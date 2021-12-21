@@ -1,0 +1,20 @@
+<div class="mod-slider">
+  <div class="logo-slider">
+    <img src="../../../public/images/logo-pc.png" alt="logo" />
+  </div>
+
+  <ul ng-controller="sliderController">
+    <li ng-repeat="item in menu track by $index">
+      <a>
+        <span
+          class="iconify"
+          data-icon="{{item.icon}}"
+          data-width="30"
+          data-height="30"
+          style="color: #616161"
+        ></span>
+        <span>{{item.name}}</span>
+      </a>
+    </li>
+  </ul>
+</div>

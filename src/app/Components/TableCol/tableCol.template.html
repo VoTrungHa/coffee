@@ -1,0 +1,15 @@
+<th
+  ng-if="ishead"
+  class="mod-table-col"
+  ng-style="widthcol && {'width':widthcol,'min-width': widthcol}"
+>
+  <div ng-transclude></div>
+</th>
+<td
+  ng-if="!ishead"
+  ng-style="widthcol && {'width':widthcol,'min-width': widthcol} "
+  class="mod-table-col"
+>
+  <div ng-transclude></div>
+</td>
+<p>{{widthcol}}</p>

@@ -1,0 +1,83 @@
+[
+  {
+    "id": "1",
+    "email": "fa@gmail.com",
+    "avatar": "http://localhost:3001/public/images/user-avatar.png",
+    "nickName": "Trung ha",
+    "createdAt": "10/12/2020",
+    "role": "USER",
+    "status": true
+  },
+  {
+    "id": "2",
+    "email": "ha@gmail.com",
+    "avatar": "http://localhost:3001/public/images/user-avatar.png",
+    "nickName": "Trung ha",
+    "createdAt": "10/12/2020",
+    "status": true,
+    "role": "USER"
+  },
+  {
+    "id": "3",
+    "email": "few@gmail.com",
+    "avatar": "http://localhost:3001/public/images/user-avatar.png",
+    "nickName": "Trung ha",
+    "createdAt": "10/12/2020",
+    "status": true,
+    "role": "ADMIN"
+  },
+  {
+    "id": "4",
+    "email": "htr@gmail.com",
+    "avatar": "http://localhost:3001/public/images/user-avatar.png",
+    "nickName": "Trung ha",
+    "createdAt": "10/12/2020",
+    "status": true,
+    "role": "ADMIN"
+  },
+  {
+    "id": "5",
+    "email": "rew@gmail.com",
+    "avatar": "http://localhost:3001/public/images/user-avatar.png",
+    "nickName": "Trung ha",
+    "createdAt": "10/12/2020",
+    "status": true,
+    "role": "USER"
+  },
+  {
+    "id": "6",
+    "email": "iu@gmail.com",
+    "avatar": "http://localhost:3001/public/images/user-avatar.png",
+    "nickName": "Trung ha",
+    "createdAt": "10/12/2020",
+    "status": true,
+    "role": "USER"
+  },
+  {
+    "id": "7",
+    "email": "cv@gmail.com",
+    "avatar": "http://localhost:3001/public/images/user-avatar.png",
+    "nickName": "Trung ha",
+    "createdAt": "10/12/2020",
+    "status": true,
+    "role": "ADMIN"
+  },
+  {
+    "id": "8",
+    "email": "mn@gmail.com",
+    "avatar": "http://localhost:3001/public/images/user-avatar.png",
+    "nickName": "Trung ha",
+    "createdAt": "10/12/2020",
+    "status": true,
+    "role": "ADMIN"
+  },
+  {
+    "id": "1",
+    "email": "trinhsatvthfewfewfwfwfew@gmail.com",
+    "avatar": "http://localhost:3001/public/images/user-avatar.png",
+    "nickName": "Trung ha",
+    "createdAt": "10/12/2020",
+    "status": true,
+    "role": "ADMIN"
+  }
+]
