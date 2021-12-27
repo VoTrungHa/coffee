@@ -1,5 +1,9 @@
 <div class="mod-list-account mb-5 mt-3">
-  <h1 class="headline size-0">Quản lý người dùng</h1>
+  <div class="d-flex justify-content-between align-items-center">
+    <h1 class="headline size-0">Quản lý người dùng</h1>
+    <a class="button bg-second" href="#!/created-account"> Tạo người dùng </a>
+  </div>
+
   <div class="mt-4 mb-4">
     <mod-card class="mt-2">
       <mod-card-header>
@@ -12,68 +16,53 @@
         </div>
       </mod-card-header>
       <div class="bd-top" ng-if="isSetOpenSearch">
-        <form
-          name="form"
-          name="form"
-          ng-controller="accountcontroller"
-          novalidate
-        >
-          <mod-card-body>
-            <div class="mt-1">
-              <p class="headline size-2">Loại nhân viên</p>
-              <div class="d-flex mt-5 gap-12">
-                <div ng-repeat="item in items">
-                  <label class="label-normal size-3">
-                    <input
-                      type="radio"
-                      ng-model="inItCondition.isadmin"
-                      value="{{item.value}}"
-                    />
-                    {{item.name}}
-                  </label>
-                </div>
+        <mod-card-body>
+          <div class="mt-1">
+            <p class="headline size-2">Loại nhân viên</p>
+            <div class="d-flex mt-5 gap-12">
+              <div ng-repeat="item in items">
+                <label class="label-normal size-3">
+                  <input
+                    type="radio"
+                    ng-model="initcondition.role"
+                    value="{{item.value}}"
+                  />
+                  {{item.name}}
+                </label>
               </div>
             </div>
-            <div class="mt-3">
-              <div class="d-flex mt-5 gap-12">
-                <mod-form-search
-                  class="w-100"
-                  formsearch="'true'"
-                  type="'text'"
-                  placeholder="'ID'"
-                  value="initcondition.id"
-                ></mod-form-search>
-                <mod-form-search
-                  class="w-100"
-                  formsearch="'true'"
-                  type="'text'"
-                  placeholder="'Địa chỉ email'"
-                  value="initcondition.email"
-                ></mod-form-search>
-                <mod-form-search
-                  class="w-100"
-                  formsearch="'true'"
-                  type="'text'"
-                  placeholder="'Tên người dùng'"
-                  value="initcondition.nickName"
-                ></mod-form-search>
-              </div>
-            </div>
-          </mod-card-body>
-          <div class="mt-5">
-            <mod-card-footer>
-              <div class="d-flex gap-8 justify-content-end">
-                <button class="button bg-remove" ng-click="rest()">Rest</button>
-                <button class="button bg-default" ng-click="search()">
-                  Tìm kiếm
-                </button>
-              </div>
-            </mod-card-footer>
           </div>
-        </form>
+          <div class="mt-3">
+            <div class="d-flex mt-5 gap-12">
+              <mod-form-search
+                class="w-100"
+                formsearch="'true'"
+                type="'text'"
+                placeholder="'ID'"
+                value="initcondition.id"
+              ></mod-form-search>
+              <mod-form-search
+                class="w-100"
+                formsearch="'true'"
+                type="'text'"
+                placeholder="'Địa chỉ email'"
+                value="initcondition.email"
+              ></mod-form-search>
+              <mod-form-search
+                class="w-100"
+                formsearch="'true'"
+                type="'text'"
+                placeholder="'Tên người dùng'"
+                value="initcondition.nickName"
+                ng-model="te['nickName']"
+              ></mod-form-search>
+            </div>
+          </div>
+        </mod-card-body>
       </div>
     </mod-card>
   </div>
+
   <div class="mt-5">
     <mod-card padding="'12'">
       <table class="mod-table">
@@ -81,15 +70,26 @@
           <tr>
             <th
               ng-repeat="item in CONTENTS_LIST_WIDTH track by $index"
-              style="width: 100px"
+              ng-style="{'width':item.width,'min-width': item.width}"
               class="mod-table-col"
             >
               {{item.name}}
+              <span ng-if="item.key" ng-click="sortBy(item.key)">
+                <span
+                  class="iconify"
+                  data-icon="fa-solid:sort"
+                  data-width="16"
+                  data-height="16"
+                ></span>
+              </span>
             </th>
           </tr>
         </thead>
+
         <tbody>
-          <tr ng-repeat="item in initData track by $index">
+          <tr
+            ng-repeat="item in initData | filter:initcondition |orderBy:propertyName:reverse track by $index"
+          >
             <td class="mod-table-col">{{item.id}}</td>
             <td class="mod-table-col">{{item.email}}</td>
             <td class="mod-table-col">{{item.nickName}}</td>
@@ -104,10 +104,17 @@
               {{item.status ===true?'Hoạt động':'Tạm khóa'}}
             </td>
             <td class="mod-table-col">
-              <button class="bg-default button">Xem</button>
+              <a href="#!/account-detail/{{item.id}}" class="bg-default button"
+                >Xem</a
+              >
             </td>
             <td class="mod-table-col">
-              <button class="bg-remove button">Xóa</button>
+              <button
+                class="bg-remove button"
+                ng-click="handlDeleteAccountById(item.id)"
+              >
+                Xóa
+              </button>
             </td>
           </tr>
         </tbody>
@@ -118,7 +125,7 @@
         uib-pagination
         total-items="totalItems"
         ng-model="currentPage"
-        max-size="5"
+        max-size="numPerPage"
         class="pagination-sm"
         items-per-page="numPerPage"
         boundary-links="true"

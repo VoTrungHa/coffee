@@ -13,18 +13,22 @@
       {
         name: "STORE MANAGEMENT",
         icon: "bx:bxs-door-open",
+        src: "",
       },
       {
         name: "ACCOUNT MANAGEMENT",
         icon: "carbon:user-avatar-filled-alt",
+        src: "#!/accounts",
       },
       {
         name: "MENU MANAGEMENT",
         icon: "ant-design:book-filled",
+        src: "",
       },
       {
         name: "PROMOTION MANAGEMENT",
         icon: "fontisto:shopping-sale",
+        src: "",
       },
     ])
     .controller("sliderController", sliderController);

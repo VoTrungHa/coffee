@@ -3,6 +3,7 @@
 
   angular.module("coffee", [
     "ngRoute",
+    "ngCookies",
     "core",
     "account",
     "layout",
@@ -12,14 +13,19 @@
     "cardHeader",
     "cardBody",
     "iconTurnOff",
-    "table",
-    "tablebody",
-    "tableheader",
-    "tableRow",
     "ui.bootstrap",
-    "tableCol",
-    "forminput",
+    "formControl",
     "formInputSearch",
+    "angularModalService",
+    "ngSanitize",
+    "ngAnimate",
+    "toastr",
     "cardFooter",
+    "account.detail",
+    "account.created",
+    "account.edit",
+    "login",
+    "register",
+    "logout",
   ]);
 })();

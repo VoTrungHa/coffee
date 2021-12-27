@@ -1,5 +1,5 @@
 (function () {
   "use strict";
 
-  angular.module("core", ["core.account"]);
+  angular.module("core", ["core.account", "core.publicService", "core.gurad"]);
 })();

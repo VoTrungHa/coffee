@@ -22,6 +22,9 @@ p {
   margin-bottom: 0 !important;
 }
 
+h4 {
+  margin-top: 0 !important;
+}
 .headline {
   margin: 0;
   word-break: break-word;
@@ -34,8 +37,31 @@ p {
   margin: 0;
   word-break: break-word;
   line-height: 1.5;
-  color: #6b778c;
+  color: #020202 !important;
+  font-weight: normal !important;
+  font-size: 14px !important;
+  padding: 0 !important;
 }
+.avatar-user {
+  width: 120px;
+}
+.dropdown-toggle::after {
+  display: none !important;
+}
+.dropdown-menu {
+  left: -50px !important;
+  top: 40px !important;
+  min-width: 250 !important;
+}
+.label1 {
+  margin: 0;
+  word-break: break-word;
+  line-height: 1.5;
+  color: #050101 !important;
+  font-weight: normal !important;
+  padding: 0 !important;
+}
+
 .text-body {
   line-height: 1.5;
 }
@@ -58,10 +84,16 @@ p {
   font-size: 12px;
 }
 
+.required,
+.error {
+  color: red;
+}
+
 .mod-header {
   position: fixed;
   right: 0;
   gap: 8px;
+  top: 0;
   z-index: 99;
   width: calc(100vw - 260px);
   height: 60px;
@@ -81,6 +113,19 @@ p {
   padding: 0 2rem;
   top: 80px;
 }
+.mod-login {
+  width: 642px;
+  max-width: calc(100vw - 24px);
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 15%);
+}
+.mod-login-logo {
+  width: 250px;
+  margin: 0 auto;
+}
+
 .mod-slider {
   position: fixed;
   top: 0;
@@ -93,7 +138,33 @@ p {
   background-color: rgba(255, 255, 255, 0.96);
   border-right: 1px solid rgba(0, 0, 0, 0.1);
 }
+.toast-title {
+  font-size: 16px;
+}
 
+.modal-contents {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 1001;
+  width: 400px;
+  max-width: 100%;
+  border-radius: 0.1rem;
+  background: white;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 2px 3px rgb(0 0 0 / 10%);
+}
+
+.modal-title {
+  background: rgb(255, 153, 0);
+  padding: 1rem 12px;
+  font-family: NotoSerif;
+  color: #fff;
+}
+
+.toast-message {
+  font-size: 14px;
+}
 .mod-slider .logo-slider {
   display: flex;
   align-items: center;
@@ -127,7 +198,7 @@ p {
 
 a {
   word-break: break-all;
-  text-decoration: none;
+  text-decoration: none !important;
   cursor: pointer;
   transition: all 0.4s;
 }
@@ -164,7 +235,24 @@ img {
 .p-12 {
   padding: 12px;
 }
+.p-16 {
+  padding: 16px;
+}
+.p-24 {
+  padding: 40px;
+}
 
+.button-round {
+  border-radius: 20px;
+  border: 1px solid #000;
+  color: #000;
+  padding: 0.2rem 0.9rem;
+  transition: all 0.4s;
+}
+
+.button-round:hover {
+  background: #f5f4f4;
+}
 .button {
   display: inline-block;
   flex-shrink: 0;
@@ -183,13 +271,27 @@ img {
   background-color: rgb(255, 153, 0);
   color: #fff;
 }
+.bg-second {
+  background-color: rgb(46, 174, 248);
+  color: #fff;
+}
 .bg-remove {
   background-color: rgb(252, 13, 13);
   color: #fff;
 }
 
-.button:hover {
+.bg-remove:hover {
+  background-color: rgb(247, 116, 64);
+  color: #fff;
+}
+
+.bg-second:hover {
+  background-color: rgb(117, 216, 247);
+  color: #fff;
+}
+.bg-default:hover {
   background-color: rgb(231, 174, 60);
+  color: #fff;
 }
 
 .mod-card {

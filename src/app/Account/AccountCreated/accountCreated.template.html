@@ -1,0 +1,47 @@
+<div class="mt-5 mx-5">
+  <h1 class="headline size-0">Tạo thêm người dùng</h1>
+  <div class="mt-4">
+    <form name="form" novalidate ng-controller="accountCreatedController">
+      <div class="mod-card p-16">
+        <div class="d-flex flex-column gap-12">
+          <mod-form-control required="'true'" lable="'Địa chỉ email'">
+            <input
+              type="email"
+              ng-model="account.email"
+              name="uEmail"
+              placeholder="example@gmail.com"
+              required=""
+              class="forminput"
+            />
+            <div ng-show="form.$submitted || form.uEmail.$touched">
+              <span class="error" ng-show="form.uEmail.$error.required">
+                Nhập địa chỉ email
+              </span>
+              <span class="error" ng-show="form.uEmail.$error.email"
+                >Địa chỉ email không hợp lệ</span
+              >
+            </div>
+          </mod-form-control>
+          <mod-form-control required="'true'" lable="'Mật khẩu'">
+            <input
+              type="password"
+              ng-model="account.password"
+              name="uPassword"
+              placeholder="********"
+              required=""
+              class="forminput"
+            />
+            <div ng-show="form.$submitted || form.uPassword.$touched">
+              <div class="error" ng-show="form.uPassword.$error.required">
+                Nhập mật khẩu
+              </div>
+            </div>
+          </mod-form-control>
+        </div>
+        <button class="button mt-5 bg-default" ng-click="handleCreated(form)">
+          Đăng ký
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

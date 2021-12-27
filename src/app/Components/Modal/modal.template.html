@@ -1,0 +1,24 @@
+<div class="modal-contents">
+  <div class="modal-title">
+    <h4 class="size-2 headline">{{title}}</h4>
+  </div>
+  <div class="text-body my-4 mx-3 size-3">{{content}}</div>
+  <div class="py-3 px-3 bd-top d-flex justify-content-end gap-8">
+    <button
+      type="button"
+      ng-click="close('No')"
+      class="button bg-remove"
+      data-dismiss="modal"
+    >
+      Hủy
+    </button>
+    <button
+      type="button"
+      ng-click="close('Yes')"
+      class="button bg-default"
+      data-dismiss="modal"
+    >
+      Tiếp tục
+    </button>
+  </div>
+</div>

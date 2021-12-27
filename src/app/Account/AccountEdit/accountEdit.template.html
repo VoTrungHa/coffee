@@ -1,0 +1,103 @@
+<div class="mt-5 mx-5">
+  <h1 class="headline size-0">Cập nhật người dùng</h1>
+  <div class="mt-4">
+    <form name="form" novalidate>
+      <div class="mod-card p-16">
+        <div class="d-flex justify-content-end">
+          <img
+            class="avatar-user"
+            ng-src="{{!account.avatar?'http://localhost:3000/public/images/user-avatar.png':account.avatar}}"
+          />
+        </div>
+        <div class="d-flex mt-2 flex-column gap-12">
+          <mod-form-control required="'true'" lable="'Địa chỉ email'">
+            <input
+              type="email"
+              ng-model="account.email"
+              name="uEmail"
+              placeholder="example@gmail.com"
+              required=""
+              class="forminput"
+            />
+            <div ng-show="form.$submitted || form.uEmail.$touched">
+              <span class="error" ng-show="form.uEmail.$error.required">
+                Nhập địa chỉ email
+              </span>
+              <span class="error" ng-show="form.uEmail.$error.email"
+                >Địa chỉ email không hợp lệ</span
+              >
+            </div>
+          </mod-form-control>
+          <mod-form-control required="'true'" lable="'Mật khẩu'">
+            <input
+              type="password"
+              ng-model="account.password"
+              name="uPassword"
+              placeholder="********"
+              required=""
+              class="forminput"
+            />
+            <div ng-show="form.$submitted || form.uPassword.$touched">
+              <div class="error" ng-show="form.uPassword.$error.required">
+                Nhập mật khẩu
+              </div>
+            </div>
+          </mod-form-control>
+          <mod-form-control required="'true'" lable="'Tên người dùng'">
+            <input
+              type="text"
+              ng-model="account.nickName"
+              name="uNickName"
+              placeholder="Nguyễn Văn A"
+              class="forminput"
+              required
+            />
+            <div ng-show="form.$submitted || form.uNickName.$touched">
+              <div class="error" ng-show="form.uNickName.$error.required">
+                Nhập Họ tên của bạn.
+              </div>
+            </div>
+          </mod-form-control>
+
+          <mod-form-control required="'true'" lable="'Chức vụ'">
+            <select
+              name="uRole"
+              ng-model="account.role"
+              class="forminput"
+              required
+            >
+              <option value="">Chọn chức vụ</option>
+              <option value="ADMIN">Quản trị</option>
+              <option value="USER">Nhân viên</option>
+            </select>
+
+            <div ng-show="form.$submitted || form.uRole.$touched">
+              <div class="error" ng-show="form.uRole.$error.required">
+                Chọn chức vụ của bạn
+              </div>
+            </div>
+          </mod-form-control>
+
+          <mod-form-control required="'true'" lable="'Ảnh đại diện'">
+            <input
+              type="text"
+              ng-model="account.avatar"
+              name="uAvatar"
+              placeholder="abc.jpg"
+              class="forminput"
+              required
+            />
+            <div ng-show="form.$submitted || form.uAvatar.$touched">
+              <div class="error" ng-show="form.uAvatar.$error.required">
+                Nhập ảnh đại diện
+              </div>
+            </div>
+          </mod-form-control>
+        </div>
+        <button class="button mt-5 bg-default" ng-click="handleEdit(form)">
+          Cập nhật
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -11,28 +11,40 @@
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="./lib/jquery/dist/jquery.js"></script>
-    <script src="./lib/angular/angular.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script> -->
 
-    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.4.0.js"></script>
+    <script src="/angular/angular.js"></script>
+    <script src="/bootstrap/dist/css/bootstrap.min.css"></script>
+    <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/angular-route/angular-route.js"></script>
+    <script src="/angular-cookies/angular-cookies.min.js"></script>
+    <script src="/angular-animate/angular-animate.js"></script>
+    <script src="./lib/angular-resource/angular-resource.js"></script>
+    <script src="/angular-sanitize/angular-sanitize.js"></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/angular-toastr/dist/angular-toastr.min.css"
+    />
+    <script src="/angular-toastr/dist/angular-toastr.tpls.js"></script>
+    <script src="/angular-modal-service/dst/angular-modal-service.min.js"></script>
+    <script src="./index.js"></script>
+    <script src="./router.js"></script>
+    <script src="./core/core.module.js"></script>
+    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.5.0.js"></script>
     <link
       href="//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
       rel="stylesheet"
     />
-    <script src="./lib/angular-animate/angular-animate.js"></script>
-    <script src="./lib/angular-resource/angular-resource.js"></script>
-    <script src="./lib/angular-route/angular-route.js"></script>
-    <script src="./index.js"></script>
-    <script src="./router.js"></script>
-
-    <script src="./core/core.module.js"></script>
 
     <script src="./app/Layouts/Layout.module.js"></script>
     <script src="./core/AccountService/Account.Service.module.js"></script>
     <script src="./core/AccountService/Account.Service.js"></script>
+    <script src="./core/publicService/Public.Service.module.js"></script>
+    <script src="./core/publicService/Public.Service.js"></script>
+    <script src="./core/Gurad/gurad.service.module.js"></script>
+    <script src="./core/Gurad/gurad.servise.js"></script>
 
     <script src="./app/Account/account.module.js"></script>
     <script src="./app/Components/Avatar/avatar.controller.js"></script>
@@ -42,17 +54,20 @@
     <script src="./app/Components/CardFooter/cardFooter.controller.js"></script>
     <script src="./app/Components/CardBody/cardBody.controller.js"></script>
     <script src="./app/Components/IconTurnOff/iconTurnOff.controller.js"></script>
-    <script src="./app/Components/Table/table.controller.js"></script>
-    <script src="./app/Components/TableBody/tableBody.controller.js"></script>
-    <script src="./app/Components/TableHeader/tableHeader.controller.js"></script>
-    <script src="./app/Components/TableRow/tableRow.controller.js"></script>
-    <script src="./app/Components/TableCol/tableCol.controller.js"></script>
-    <script src="./app/Components/FormInput/formInput.controller.js"></script>
+    <script src="./app/Components/FormControl/formControl.controller.js"></script>
     <script src="./app/Components/FormSearch/formSearch.controller.js"></script>
 
-    <script src="./app/Account/Account-created/account-created.module.js"></script>
-    <script src="./app/Account/Account-created/account-created.controller.js"></script>
-    <script src="./app/Account/Account-created/account-created.component.js"></script>
+    <script src="./app/Account/AccountCreated/accountCreated.module.js"></script>
+    <script src="./app/Account/AccountCreated/accountCreated.controller.js"></script>
+    <script src="./app/Account/AccountCreated/accountCreated.component.js"></script>
+
+    <script src="./app/Account/AccountEdit/accountEdit.module.js"></script>
+    <script src="./app/Account/AccountEdit/accountEdit.controller.js"></script>
+    <script src="./app/Account/AccountEdit/accountEdit.component.js"></script>
+
+    <script src="./app/Account/AccountDetail/accountDetail.module.js"></script>
+    <script src="./app/Account/AccountDetail/accountDetail.controller.js"></script>
+    <script src="./app/Account/AccountDetail/accountDetail.component.js"></script>
 
     <script src="./app/Layouts/Header/header.module.js"></script>
     <script src="./app/Layouts/Header/header.controller.js"></script>
@@ -62,13 +77,31 @@
     <script src="./app/Layouts/Slider/slider.controller.js"></script>
     <script src="./app/Layouts/Slider/slider.component.js"></script>
 
+    <script src="./app/Gurad/Login/login.module.js"></script>
+    <script src="./app/Gurad/Login/login.controller.js"></script>
+    <script src="./app/Gurad/Login/login.component.js"></script>
+
+    <script src="./app/Gurad/Register/register.module.js"></script>
+    <script src="./app/Gurad/Register/register.controller.js"></script>
+    <script src="./app/Gurad/Register/register.component.js"></script>
+
+    <script src="./app/Gurad/Logout/logout.module.js"></script>
+    <script src="./app/Gurad/Logout/logout.controller.js"></script>
+    <script src="./app/Gurad/Logout/logout.component.js"></script>
+
     <script src="./app/Account/account.controller.js"></script>
     <script src="./app/Account/account.component.js"></script>
   </head>
   <body ng-app="coffee">
-    <mod-header index="abc">
+    <div ng-if=" globals ">
+      <mod-header>
+        <div ng-view class="view-frame"></div>
+      </mod-header>
+
+      <mod-slider></mod-slider>
+    </div>
+    <div ng-if="!globals">
       <div ng-view class="view-frame"></div>
-    </mod-header>
-    <mod-slider></mod-slider>
+    </div>
   </body>
 </html>

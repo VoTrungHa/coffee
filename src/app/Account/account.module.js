@@ -1,5 +1,5 @@
 (function () {
   "use strict";
 
-  angular.module("account", ["account.created", "core.account"]);
+  angular.module("account", ["core.account"]);
 })();

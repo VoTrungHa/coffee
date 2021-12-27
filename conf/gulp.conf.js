@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 /**
  *  This file contains the variables used in other gulp files
@@ -8,27 +8,28 @@
  *  of the tasks
  */
 
-const path = require('path');
-const gutil = require('gulp-util');
+const path = require("path");
+const gutil = require("gulp-util");
 
-exports.ngModule = 'app';
+exports.ngModule = "app";
 
 /**
  *  The main paths of your project handle these with care
  */
 exports.paths = {
-  src: 'src',
-  dist: 'dist',
-  tmp: '.tmp',
-  e2e: 'e2e',
-  tasks: 'gulp_tasks'
+  src: "src",
+  node_modules: "node_modules",
+  dist: "dist",
+  tmp: ".tmp",
+  e2e: "e2e",
+  tasks: "gulp_tasks",
 };
 
 /**
-* used on gulp dist
-*/
+ * used on gulp dist
+ */
 exports.htmlmin = {
-  ignoreCustomFragments: [/{{.*?}}/]
+  ignoreCustomFragments: [/{{.*?}}/],
 };
 
 exports.path = {};
@@ -49,6 +50,6 @@ for (const pathName in exports.paths) {
 exports.errorHandler = function (title) {
   return function (err) {
     gutil.log(gutil.colors.red(`[${title}]`), err.toString());
-    this.emit('end');
+    this.emit("end");
   };
 };

@@ -5,7 +5,7 @@
 
   <ul ng-controller="sliderController">
     <li ng-repeat="item in menu track by $index">
-      <a>
+      <a ng-href="{{item.src}}">
         <span
           class="iconify"
           data-icon="{{item.icon}}"
