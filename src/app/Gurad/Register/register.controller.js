@@ -12,7 +12,6 @@
       var result = Account.createdAccount(account);
       if (result.status) {
         toastr.success(result.message, "Tạo tài khoản");
-        location.replace("/login");
       } else {
         toastr.error(result.message, "Tạo tài khoản");
       }

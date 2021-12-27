@@ -17,7 +17,7 @@
         },
         createdAccount: function (account) {
           console.log(account);
-          var data = JSON.parse(localStorage.getItem("Accounts"));
+          var data = JSON.parse(localStorage.getItem("Accounts")) || [];
           var result = data.filter(
             (item, index) => item.email === account.email
           );
