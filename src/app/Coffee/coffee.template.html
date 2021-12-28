@@ -1,0 +1,156 @@
+<div class="mod-list-account mb-5 mt-3">
+  <h1 class="headline size-0">Quản lý sản phẩm</h1>
+
+  <div class="mt-4 mb-4">
+    <mod-card class="mt-2">
+      <mod-card-header>
+        <div class="d-flex justify-content-between">
+          <p class="headline size-2">Tìm kiếm</p>
+          <icon-turn-off
+            isOpen="isSetOpenSearch"
+            setIsOpen="setIsOpenSearch"
+          ></icon-turn-off>
+        </div>
+      </mod-card-header>
+      <div class="bd-top" ng-if="isSetOpenSearch">
+        <mod-card-body>
+          <div class="mt-1">
+            <p class="headline size-2">Loại</p>
+            <div class="d-flex mt-2 gap-12">
+              <div ng-repeat="item in types">
+                <label class="label-normal size-3">
+                  <input
+                    type="radio"
+                    ng-model="initcondition.category"
+                    value="{{item.value}}"
+                  />
+                  {{item.name}}
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="mt-3">
+            <p class="headline size-2">Giá thành</p>
+            <div class="d-flex mt-2 gap-12">
+              <mod-form-search
+                class="w-25"
+                formsearch="'true'"
+                type="'text'"
+                placeholder="'từ'"
+                value="initcondition.priceF"
+              ></mod-form-search>
+              <mod-form-search
+                class="w-25"
+                formsearch="'true'"
+                type="'text'"
+                placeholder="'đến'"
+                value="initcondition.priceT"
+              ></mod-form-search>
+            </div>
+          </div>
+          <div class="mt-4">
+            <p class="headline size-2">Mã và tên</p>
+            <div class="d-flex mt-2 gap-12">
+              <mod-form-search
+                class="w-25"
+                formsearch="'true'"
+                type="'text'"
+                placeholder="'Mã sản phẩm'"
+                value="initcondition.id"
+              ></mod-form-search>
+              <mod-form-search
+                class="w-25"
+                formsearch="'true'"
+                type="'text'"
+                placeholder="'Tên sản phẩm'"
+                value="initcondition.name"
+              ></mod-form-search>
+            </div>
+          </div>
+        </mod-card-body>
+        <mod-card-footer>
+          <div class="d-flex justify-content-end gap-12">
+            <button class="button bg-remove" ng-click="hanldRest()">
+              Rest
+            </button>
+            <button class="button bg-default" ng-click="hanldSearch()">
+              Tìm kiếm
+            </button>
+          </div>
+        </mod-card-footer>
+      </div>
+    </mod-card>
+  </div>
+
+  <div class="mt-5">
+    <mod-card padding="'12'">
+      <table class="mod-table">
+        <thead class="mod-table-header">
+          <tr>
+            <th
+              ng-repeat="item in CONTENTS_LIST_WIDTH track by $index"
+              ng-style="{'width':item.width,'min-width': item.width}"
+              class="mod-table-col"
+            >
+              {{item.name}}
+              <span ng-if="item.key" ng-click="sortBy(item.key)">
+                <span
+                  class="iconify"
+                  data-icon="fa-solid:sort"
+                  data-width="16"
+                  data-height="16"
+                ></span>
+              </span>
+            </th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr
+            ng-repeat="item in initData |orderBy:propertyName:reverse track by $index"
+          >
+            <td class="mod-table-col">{{item.id}}</td>
+            <td class="mod-table-col">{{item.name}}</td>
+            <td class="mod-table-col">
+              <avatar src="item.avatar"></avatar>
+            </td>
+            <td class="mod-table-col">{{item.category}}</td>
+
+            <td class="mod-table-col">{{item.price}}</td>
+            <td class="mod-table-col">{{item.count }}</td>
+            <td class="mod-table-col">
+              <a href="#!/account-detail/{{item.id}}" class="bg-default button"
+                >Xem</a
+              >
+            </td>
+            <td class="mod-table-col">
+              <button
+                class="bg-remove button"
+                ng-click="handlDeleteAccountById(item.id)"
+              >
+                Xóa
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </mod-card>
+    <div class="d-flex justify-content-center">
+      <ul
+        uib-pagination
+        total-items="totalItems"
+        ng-model="currentPage"
+        max-size="numPerPage"
+        class="pagination-sm"
+        items-per-page="numPerPage"
+        boundary-links="true"
+        ng-change="pageChanged()"
+        force-ellipses="true"
+        previous-text="&lsaquo;"
+        next-text="&rsaquo;"
+        first-text="&laquo;"
+        last-text="&raquo;"
+      ></ul>
+    </div>
+  </div>
+</div>

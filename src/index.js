@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  angular.module("coffee", [
+  angular.module("index", [
     "ngRoute",
     "ngCookies",
     "core",
@@ -26,6 +26,6 @@
     "account.edit",
     "login",
     "register",
-    "logout",
+    "coffee",
   ]);
 })();

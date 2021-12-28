@@ -11,9 +11,9 @@
     })
     .constant("menu", [
       {
-        name: "STORE MANAGEMENT",
-        icon: "bx:bxs-door-open",
-        src: "",
+        name: "PRODUCT MANAGEMENT",
+        icon: "ls:coffee",
+        src: "#!/coffees",
       },
       {
         name: "ACCOUNT MANAGEMENT",

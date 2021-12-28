@@ -1,7 +1,7 @@
 "use strict";
 
 angular
-  .module("coffee")
+  .module("index")
   .config([
     "$routeProvider",
     function config($routeProvider) {
@@ -31,7 +31,10 @@ angular
         .when("/logout", {
           template: "<logout-component></logout-component>",
         })
-        .otherwise("/accounts");
+        .when("/coffees", {
+          template: "<coffee-component></coffee-component>",
+        })
+        .otherwise("/coffees");
     },
   ])
   .run([
