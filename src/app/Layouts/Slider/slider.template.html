@@ -1,10 +1,6 @@
 <div class="mod-slider">
-  <div class="logo-slider">
-    <img src="../../../public/images/logo-pc.png" alt="logo" />
-  </div>
-
-  <ul ng-controller="sliderController">
-    <li ng-repeat="item in menu track by $index">
+  <ul class="m-0 p-2" ng-controller="sliderController">
+    <li class="mt-4" ng-repeat="item in menu track by $index">
       <a ng-href="{{item.src}}">
         <span
           class="iconify"

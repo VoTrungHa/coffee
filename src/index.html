@@ -51,26 +51,16 @@
 
     <script src="./app/Account/account.module.js"></script>
     <script src="./app/Components/Avatar/avatar.controller.js"></script>
-    <script src="./app/Components/Typo/typo.controller.js"></script>
     <script src="./app/Components/Card/card.controller.js"></script>
     <script src="./app/Components/CardHeader/cardHeader.controller.js"></script>
     <script src="./app/Components/CardFooter/cardFooter.controller.js"></script>
     <script src="./app/Components/CardBody/cardBody.controller.js"></script>
-    <script src="./app/Components/IconTurnOff/iconTurnOff.controller.js"></script>
     <script src="./app/Components/FormControl/formControl.controller.js"></script>
     <script src="./app/Components/FormSearch/formSearch.controller.js"></script>
-
-    <script src="./app/Account/AccountCreated/accountCreated.module.js"></script>
-    <script src="./app/Account/AccountCreated/accountCreated.controller.js"></script>
-    <script src="./app/Account/AccountCreated/accountCreated.component.js"></script>
-
-    <script src="./app/Account/AccountEdit/accountEdit.module.js"></script>
-    <script src="./app/Account/AccountEdit/accountEdit.controller.js"></script>
-    <script src="./app/Account/AccountEdit/accountEdit.component.js"></script>
-
-    <script src="./app/Account/AccountDetail/accountDetail.module.js"></script>
-    <script src="./app/Account/AccountDetail/accountDetail.controller.js"></script>
-    <script src="./app/Account/AccountDetail/accountDetail.component.js"></script>
+    <script src="./app/Components/HeaderTable/HeaderTable.controller.js"></script>
+    <script src="./app/Components/BodyTable/BodyTable.controller.js"></script>
+    <script src="./app/Components/Pagination/Pagination.controller.js"></script>
+    <script src="./app/Components/Modal/modal.controller.js"></script>
 
     <script src="./app/Layouts/Header/header.module.js"></script>
     <script src="./app/Layouts/Header/header.controller.js"></script>
@@ -88,18 +78,14 @@
     <script src="./app/Gurad/Register/register.controller.js"></script>
     <script src="./app/Gurad/Register/register.component.js"></script>
 
-    <script src="./app/Gurad/Logout/logout.module.js"></script>
-    <script src="./app/Gurad/Logout/logout.controller.js"></script>
-    <script src="./app/Gurad/Logout/logout.component.js"></script>
-
     <script src="./app/Account/account.controller.js"></script>
     <script src="./app/Account/account.component.js"></script>
 
     <script src="./app/Coffee/coffee.controller.js"></script>
     <script src="./app/Coffee/coffee.component.js"></script>
   </head>
-  <body ng-app="index">
-    <div ng-if=" globals ">
+  <body ng-app="index" ng-controller="indexcontroller">
+    <div ng-if="globals ">
       <mod-header>
         <div ng-view class="view-frame"></div>
       </mod-header>

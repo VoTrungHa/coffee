@@ -1,84 +1,84 @@
 [
   {
     "id": "8H17tkfb",
-    "email": "b@gmail.com",
+    "email": "abc@gmail.com",
     "avatar": "http://localhost:3000/public/images/user-avatar.png",
-    "nickName": "a",
-    "createdAt": 2,
-    "role": "USER",
-    "status": true
-  },
-  {
-    "id": "8g17tkRb",
-    "email": "a@gmail.com",
-    "avatar": "http://localhost:3000/public/images/user-avatar.png",
-    "nickName": "e",
-    "createdAt": 0,
-    "status": true,
+    "nickName": "Hoàn Bính",
+    "gender": "1",
+    "password": "123",
+    "phone": "036151212",
     "role": "USER"
   },
   {
-    "id": "6H17jkRb",
-    "email": "c@gmail.com",
+    "id": "8H32tkfb",
+    "email": "kimcuc@gmail.com",
     "avatar": "http://localhost:3000/public/images/user-avatar.png",
-    "nickName": "ư",
-    "createdAt": 5,
-    "status": true,
-    "role": "ADMIN"
+    "nickName": "Kim cúc",
+    "gender": "0",
+    "phone": "036151212",
+    "role": "USER"
+  },
+  {
+    "id": "8H17t43b",
+    "email": "trongnghia@gmail.com",
+    "avatar": "http://localhost:3000/public/images/user-avatar.png",
+    "nickName": "Trọng Nghĩa",
+    "gender": "1",
+    "phone": "036151212",
+    "role": "USER"
   },
   {
     "id": "6H17tfRb",
-    "email": "b@gmail.com",
+    "email": "luly@gmail.com",
     "avatar": "http://localhost:3000/public/images/user-avatar.png",
-    "nickName": "g",
-    "createdAt": 3,
-    "status": true,
-    "role": "ADMIN"
+    "nickName": "Lu Ly",
+    "gender": "0",
+    "phone": "036151212",
+    "role": "USER"
   },
   {
     "id": "1H17wkRb",
-    "email": "e@gmail.com",
+    "email": "huynhload@gmail.com",
     "avatar": "http://localhost:3000/public/images/user-avatar.png",
-    "nickName": "4",
-    "createdAt": 7,
-    "status": true,
+    "nickName": "Huỳnh Loan",
+    "gender": "0",
+    "phone": "036151212",
     "role": "USER"
   },
   {
     "id": "7H17gkRb",
-    "email": "iu@gmail.com",
+    "email": "Kimtrong@gmail.com",
     "avatar": "http://localhost:3000/public/images/user-avatar.png",
-    "nickName": "j",
-    "createdAt": 5,
-    "status": true,
+    "nickName": "Kim Trọng",
+    "gender": "1",
+    "phone": "036151212",
     "role": "USER"
   },
   {
     "id": "1217tkeb",
-    "email": "cv@gmail.com",
+    "email": "Thuthuy@gmail.com",
     "avatar": "http://localhost:3000/public/images/user-avatar.png",
-    "nickName": "y",
-    "createdAt": 9,
-    "status": true,
+    "nickName": "Thu Thủy",
+    "gender": "0",
+    "phone": "036151212",
     "role": "ADMIN"
   },
   {
     "id": "8H17teRb",
-    "email": "mn@gmail.com",
+    "email": "Trannhat@gmail.com",
     "avatar": "http://localhost:3000/public/images/user-avatar.png",
-    "nickName": "Trung ha",
-    "createdAt": 3,
-    "status": true,
-    "role": "ADMIN"
+    "nickName": "Trần nhật",
+    "gender": "1",
+    "phone": "036151212",
+    "role": "USER"
   },
   {
     "id": "9H1etkRb",
-    "email": "abc@gmail.com",
+    "email": "kimthoa@gmail.com",
     "avatar": "http://localhost:3000/public/images/user-avatar.png",
-    "nickName": "Trung ha",
-    "createdAt": 4,
-    "password": "123",
-    "status": true,
+    "nickName": "kim Thoa",
+    "gender": "0",
+    "phone": "036151212",
     "role": "ADMIN"
   }
 ]

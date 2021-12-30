@@ -4,7 +4,8 @@
   angular
     .module("account", ["ui.bootstrap"])
     .controller("accountcontroller", accountcontroller)
-    .controller("ModalController", ModalController);
+    .controller("ModalController", ModalController)
+    .controller("ModalUpdateController", ModalUpdateController);
 
   ModalController.$inject = ["$scope", "close"];
   function ModalController($scope, close) {
@@ -15,12 +16,20 @@
     };
   }
 
+  ModalUpdateController.$inject = ["$scope", "close", "account", "title"];
+  function ModalUpdateController($scope, close, account, title) {
+    $scope.user = account;
+    $scope.title = title;
+    $scope.close = function (result) {
+      close(result);
+    };
+  }
+
   accountcontroller.$inject = ["$scope", "Account", "ModalService", "toastr"];
   function accountcontroller($scope, Account, ModalService, toastr) {
-    $scope.isSetOpenSearch = true;
     $scope.initData = [];
     $scope.orderBy = "email";
-    $scope.propertyName = "createdAt";
+    $scope.propertyName = "name";
     $scope.reverse = true;
     $scope.items = [
       { name: "Tất cả", value: "" },
@@ -28,28 +37,16 @@
       { name: "Nhân viên", value: "USER" },
     ];
     $scope.CONTENTS_LIST_WIDTH = [
-      { name: "ID", width: "140px" },
-      { name: "Địa chỉ email", width: "140px", key: "email" },
-      { name: "Tên tài khoản", width: "140px", key: "nickName" },
-      { name: "Chức vụ", width: "120px", key: "role" },
-      { name: "Hình ảnh", width: "120px" },
-      { name: "Ngày đăng ký", width: "140px", key: "createdAt" },
-      { name: "Trạng thái", width: "120px" },
-      { name: "Chi tiết", width: "120px" },
-      { name: "Xóa", width: "100px" },
+      { name: "Name", width: "140px", key: "nickName" },
+      { name: "Gender", width: "140px", key: "gender" },
+      { name: "Role", width: "140px", key: "role" },
+      { name: "Phone", width: "120px", key: "phone" },
+      { name: "Email", width: "120px", key: "email" },
+      { name: "Action", width: "160px" },
     ];
-    $scope.setIsOpenSearch = function (name) {
-      $scope.isSetOpenSearch = name;
-    };
     $scope.currentPage = 1;
     $scope.numPerPage = 5;
-
-    $scope.initcondition = {
-      role: "",
-      email: "",
-      id: "",
-      nickName: "",
-    };
+    $scope.title = "Update Account";
 
     function getContent(page) {
       Account.getListAccount();
@@ -57,14 +54,12 @@
       $scope.totalItems = $scope.initData.length;
       var begin = (page - 1) * $scope.numPerPage,
         end = begin + $scope.numPerPage;
-      console.log(begin + " " + end);
       $scope.initData = $scope.initData.slice(begin, end);
-      console.log($scope.initData);
     }
     getContent($scope.currentPage); // get list account .
 
-    $scope.pageChanged = function () {
-      getContent($scope.currentPage);
+    $scope.pageChanged = function (page) {
+      getContent(page);
     };
 
     $scope.sortBy = function (propertyName) {
@@ -75,7 +70,7 @@
 
     $scope.handlDeleteAccountById = function (id) {
       ModalService.showModal({
-        templateUrl: "app/Components/Modal/modal.template.html",
+        templateUrl: "app/Components/Notifycation/notifycation.template.html",
         controller: "ModalController",
       }).then(function (modal) {
         modal.close.then(function (result) {
@@ -88,6 +83,63 @@
           }
         });
       });
+    };
+
+    function openModal(data, title) {
+      return ModalService.showModal({
+        templateUrl: "app/Account/modalAccount.template.html",
+        controller: "ModalUpdateController",
+        inputs: {
+          account: data,
+          title: title,
+        },
+      });
+    }
+
+    $scope.handlUpdateAccount = function (id) {
+      $scope.title = "Updated account";
+      var result = Account.getAccountById(id);
+      var modal = openModal(result, $scope.title);
+      modal.then(function (modal) {
+        modal.close.then(function (result) {
+          if (result !== "no") {
+            var resp = Account.editAccount(result, id);
+            if (resp) {
+              toastr.success("Thành công !", "Cập nhật người dùng", {
+                closeButton: true,
+              });
+              getContent($scope.currentPage);
+            }
+          }
+        });
+      });
+    };
+
+    $scope.handleCreated = function () {
+      $scope.title = "Created account";
+      var modal = openModal({}, $scope.title);
+      modal.then(function (modal) {
+        modal.close.then(function (result) {
+          if (result !== "no") {
+            var resp = Account.createdAccount(result);
+            if (resp.status) {
+              toastr.success("Thành công !", "Thêm người dùng", {
+                closeButton: true,
+              });
+              getContent($scope.currentPage);
+            } else {
+              toastr.error("Thất bại, email đã tồn tại!", "Thêm người dùng", {
+                closeButton: true,
+              });
+            }
+          }
+        });
+      });
+    };
+
+    $scope.hanldRest = function () {
+      $scope.initcondition = {};
+      getContent($scope.currentPage);
     };
   }
 })();

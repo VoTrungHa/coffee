@@ -1,41 +1,50 @@
 (function () {
   "use strict";
 
-  angular.module("coffee", []).controller("coffeeController", coffeeController);
+  angular
+    .module("coffee", [])
+    .controller("coffeeController", coffeeController)
+    .controller("ModalCoffeeController", ModalCoffeeController)
+    .controller("ModalController", ModalController);
 
-  coffeeController.$inject = ["$scope", "Coffee"];
+  ModalController.$inject = ["$scope", "close"];
+  function ModalController($scope, close) {
+    $scope.title = "Xóa sản phẩm";
+    $scope.content = "Bạn có chắc muốn xóa sản phẩm này không ?";
+    $scope.close = function (result) {
+      close(result);
+    };
+  }
 
-  function coffeeController($scope, Coffee) {
-    $scope.isSetOpenSearch = true;
-
-    $scope.types = [
-      { name: "Tất cả", value: "" },
-      { name: "Cà phê", value: "Cà phê" },
-      { name: "Trái cây", value: "Trái cây" },
-      { name: "Giải khát", value: "Giải khát" },
-    ];
+  ModalCoffeeController.$inject = ["$scope", "close", "coffee", "title"];
+  function ModalCoffeeController($scope, close, coffee, title) {
+    $scope.coffee = coffee;
+    $scope.title = title;
+    $scope.size = ["M", "L", "XL"];
+    $scope.category = ["Cafe", "Giải khát", "Nước suối", "sinh tố"];
+    $scope.attribute = [{ size: "", price: "" }];
+    $scope.addAttribute = function () {
+      $scope.attribute.push({ size: "", price: "" });
+    };
+    $scope.close = function (result) {
+      close(result);
+    };
+  }
+  coffeeController.$inject = ["$scope", "Coffee", "ModalService", "toastr"];
+  function coffeeController($scope, Coffee, ModalService, toastr) {
     $scope.CONTENTS_LIST_WIDTH = [
-      { name: "ID", width: "140px" },
-      { name: "Tên sản phẩm", width: "140px" },
-      { name: "Hình ảnh", width: "120px" },
-      { name: "Thể loại", width: "120px", key: "category" },
-      { name: "Giá thành", width: "140px", key: "price" },
-      { name: "Số lượng", width: "120px", key: "count" },
-      { name: "Chi tiết", width: "120px" },
-      { name: "Xóa", width: "100px" },
+      { name: "Name", width: "140px", key: "name" },
+      { name: "Image", width: "140px" },
+      { name: "Category", width: "120px" },
+      { name: "Size", width: "120px" },
+      { name: "Action", width: "160px" },
     ];
+
     $scope.currentPage = 1;
     $scope.numPerPage = 5;
 
     $scope.initcondition = {
-      category: "",
-      id: "",
       name: "",
-      priceF: null,
-      priceT: null,
-    };
-    $scope.setIsOpenSearch = function (name) {
-      $scope.isSetOpenSearch = name;
     };
 
     function getContent(page) {
@@ -46,72 +55,92 @@
         end = begin + $scope.numPerPage;
       $scope.initData = $scope.initData.slice(begin, end);
     }
-    getContent($scope.currentPage); // get list coffee .
-    $scope.pageChanged = function () {
-      getContent($scope.currentPage);
+    getContent($scope.currentPage);
+    $scope.pageChanged = function (page) {
+      getContent(page);
     };
 
     $scope.hanldRest = function () {
-      $scope.initcondition = {
-        category: "",
-        id: "",
-        name: "",
-        priceF: null,
-        priceT: null,
-      };
+      $scope.initcondition = {};
       getContent($scope.currentPage);
     };
 
-    $scope.hanldSearch = function () {
-      var conditions = [];
-      if ($scope.initcondition.category) {
-        conditions.push({
-          name: "category",
-          value: $scope.initcondition.category,
-        });
-      }
-      if ($scope.initcondition.id) {
-        conditions.push({
-          name: "id",
-          value: $scope.initcondition.id,
-        });
-      }
-      if ($scope.initcondition.name) {
-        conditions.push({
-          name: "name",
-          value: $scope.initcondition.name,
-        });
-      }
+    $scope.sortBy = function (propertyName) {
+      $scope.reverse =
+        $scope.propertyName === propertyName ? !$scope.reverse : false;
+      $scope.propertyName = propertyName;
+    };
 
-      if ($scope.initcondition.priceF && $scope.initcondition.priceT) {
-        conditions.push({
-          name: "price",
-          priceF: $scope.initcondition.priceF,
-          priceT: $scope.initcondition.priceT,
+    function openModal(data, title) {
+      return ModalService.showModal({
+        templateUrl: "app/Coffee/modalCoffee.template.html",
+        controller: "ModalCoffeeController",
+        inputs: {
+          coffee: data,
+          title: title,
+        },
+      });
+    }
+    $scope.handlUpdateProduct = function (id) {
+      $scope.title = "Updated product";
+      var result = Coffee.getProductById(id);
+      var modal = openModal(result, $scope.title);
+      modal.then(function (modal) {
+        modal.close.then(function (result) {
+          if (result !== "no") {
+            var resp = Coffee.editCoffee(result, id);
+            if (resp) {
+              toastr.success("Thành công !", "Cập nhật sản phẩm ", {
+                closeButton: true,
+              });
+              getContent($scope.currentPage);
+            }
+          }
         });
-      }
+      });
+    };
 
-      if (conditions.length > 0) {
-        conditions.map((item, index) => {
-          var result = $scope.initData.filter((coffee, index) => {
-            if (item.name === "price") {
-              return (
-                +coffee[item.name] >= +item.priceF &&
-                +coffee[item.name] <= +item.priceT
-              );
+    $scope.handleCreated = function () {
+      $scope.title = "Created coffee";
+      var modal = openModal({}, $scope.title, $scope.SIZE);
+      modal.then(function (modal) {
+        modal.close.then(function (result) {
+          if (result !== "no") {
+            var resp = Coffee.createdCoffee(result);
+            if (resp.status) {
+              toastr.success("Thành công !", "Thêm người dùng", {
+                closeButton: true,
+              });
+              getContent($scope.currentPage);
             } else {
-              return (
-                coffee[item.name]
-                  .toLowerCase()
-                  .indexOf(item.value.toLowerCase()) != -1
+              toastr.error(
+                "Thất bại, sản phẩm đã tồn tại!",
+                "Thêm người dùng",
+                {
+                  closeButton: true,
+                }
               );
             }
-          });
-          $scope.initData = result;
+          }
         });
-      } else {
-        getContent($scope.currentPage);
-      }
+      });
+    };
+
+    $scope.handlDeleteProductById = function (id) {
+      ModalService.showModal({
+        templateUrl: "app/Components/Notifycation/notifycation.template.html",
+        controller: "ModalController",
+      }).then(function (modal) {
+        modal.close.then(function (result) {
+          if (result === "Yes") {
+            Coffee.deleteProductById(id);
+            getContent($scope.currentPage);
+            toastr.success("Thành công !", "Xóa sản phẩm", {
+              closeButton: true,
+            });
+          }
+        });
+      });
     };
   }
 })();

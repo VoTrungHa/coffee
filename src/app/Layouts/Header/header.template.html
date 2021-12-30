@@ -1,39 +1,37 @@
 <div class="mod-header">
-  <div class="container" ng-controller="headerController">
-    <div class="gap-8 d-flex justify-content-end align-items-center">
-      <div uib-dropdown class="cursor">
-        <avatar
-          id="simple-dropdown"
-          uib-dropdown-toggle
-          src="user.avatar"
-        ></avatar>
-        <ul class="dropdown-menu py-2 px-3" uib-dropdown-menu ng-if="isLogin">
-          <div class="d-flex gap-12">
-            <avatar src="user.avatar"></avatar>
-            <div>
-              <h5 class="headline size-4">{{user.nickName}}</h5>
-              <p class="size-5">
-                {{user.role==="USER"?"Nhân viên":"Quản trị"}}
-              </p>
-            </div>
+  <div
+    ng-controller="headerController"
+    class="gap-8 d-flex w-100 px-5 justify-content-between align-items-center"
+  >
+    <h1 class="headline size-2">THE COFFEE HOUSE</h1>
+    <div uib-dropdown class="cursor">
+      <avatar
+        id="simple-dropdown"
+        uib-dropdown-toggle
+        src="user.avatar"
+      ></avatar>
+      <ul class="dropdown-menu py-2 px-3" uib-dropdown-menu ng-if="isLogin">
+        <div class="d-flex gap-12">
+          <avatar src="user.avatar"></avatar>
+          <div>
+            <h5 class="headline size-4">{{user.nickName}}</h5>
+            <p class="size-5">{{user.role==="USER"?"Nhân viên":"Quản trị"}}</p>
           </div>
-          <div
-            class="
-              d-flex
-              flex-column
-              gap-8
-              align-items-center
-              mt-2
-              justify-content-center
-            "
-          >
-            <a class="button-round"> Trang cá nhân </a>
-            <a ng-click="logout()"> Đăng xuất </a>
-          </div>
-        </ul>
-      </div>
-      <p class="body-1">{{user.nickName}}</p>
-      <button class="button bg-default">New account</button>
+        </div>
+        <div
+          class="
+            d-flex
+            flex-column
+            gap-8
+            align-items-center
+            mt-2
+            justify-content-center
+          "
+        >
+          <a class="button-round"> Trang cá nhân </a>
+          <a ng-click="logout()"> Đăng xuất </a>
+        </div>
+      </ul>
     </div>
 
     <!-- Simple dropdown -->

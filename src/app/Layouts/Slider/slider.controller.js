@@ -11,25 +11,22 @@
     })
     .constant("menu", [
       {
-        name: "PRODUCT MANAGEMENT",
-        icon: "ls:coffee",
-        src: "#!/coffees",
-      },
-      {
-        name: "ACCOUNT MANAGEMENT",
         icon: "carbon:user-avatar-filled-alt",
         src: "#!/accounts",
       },
       {
-        name: "MENU MANAGEMENT",
-        icon: "ant-design:book-filled",
-        src: "",
+        icon: "ls:coffee",
+        src: "#!/coffees",
       },
-      {
-        name: "PROMOTION MANAGEMENT",
-        icon: "fontisto:shopping-sale",
-        src: "",
-      },
+
+      // {
+      //   icon: "ant-design:book-filled",
+      //   src: "",
+      // },
+      // {
+      //   icon: "fontisto:shopping-sale",
+      //   src: "",
+      // },
     ])
     .controller("sliderController", sliderController);
   sliderController.$inject = ["$scope", "menu"];

@@ -16,7 +16,6 @@
           }
         },
         createdAccount: function (account) {
-          console.log(account);
           var data = JSON.parse(localStorage.getItem("Accounts")) || [];
           var result = data.filter(
             (item, index) => item.email === account.email
@@ -26,12 +25,11 @@
             var newAcc = {
               id: publicService.Makeid(8),
               email: account.email,
-              nickName: "",
-              status: true,
               password: account.password,
-              avatar: "http://localhost:3000/public/images/user-avatar.png",
               role: "USER",
-              createdAt: new Date().toLocaleDateString(),
+              phone: account.phone || "",
+              nickName: account.nickName || "",
+              gender: account.gender || "",
             };
             data.push(newAcc);
             localStorage.setItem("Accounts", JSON.stringify(data));
@@ -47,18 +45,17 @@
             if (item.id === id) {
               item.email = account.email;
               item.nickName = account.nickName;
-              item.password = account.password;
-              item.avatar = account.avatar;
               item.role = account.role;
+              item.gender = account.gender;
+              item.phone = account.phone;
             }
           });
           localStorage.setItem("Accounts", JSON.stringify(data));
           return true;
         },
         deleteAccountById: function (id) {
-          console.log(id);
           var data = JSON.parse(localStorage.getItem("Accounts"));
-          console.log(data);
+
           var result = data.filter((item, index) => item.id !== id);
           localStorage.setItem("Accounts", JSON.stringify(result));
         },

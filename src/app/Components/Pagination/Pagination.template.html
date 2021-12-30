@@ -1,0 +1,18 @@
+<div class="d-flex justify-content-between align-items-center">
+  <p class="headline size-3">Showing {{length}} items</p>
+  <ul
+    uib-pagination
+    total-items="totalitems"
+    ng-model="currentpage"
+    max-size="numperpage"
+    class="pagination-sm"
+    items-per-page="numperpage"
+    boundary-links="true"
+    ng-change="onChangePage(currentpage)"
+    force-ellipses="true"
+    previous-text="&lsaquo;"
+    next-text="&rsaquo;"
+    first-text="&laquo;"
+    last-text="&raquo;"
+  ></ul>
+</div>

@@ -49,9 +49,8 @@ h4 {
   display: none !important;
 }
 .dropdown-menu {
-  left: -50px !important;
+  left: -100px !important;
   top: 40px !important;
-  min-width: 250 !important;
 }
 .label1 {
   margin: 0;
@@ -95,10 +94,10 @@ h4 {
   gap: 8px;
   top: 0;
   z-index: 99;
-  width: calc(100vw - 260px);
+  width: 100vw;
   height: 60px;
   font-size: 16px;
-  background-color: rgba(255, 255, 255, 0.96);
+  background-color: rgba(253, 160, 38, 0.96);
   border: 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 0;
@@ -108,7 +107,7 @@ h4 {
 .mod-body {
   position: relative;
   float: right;
-  width: calc(100% - 260px);
+  width: calc(100% - 60px);
   min-height: 100%;
   padding: 0 2rem;
   top: 80px;
@@ -128,14 +127,13 @@ h4 {
 
 .mod-slider {
   position: fixed;
-  top: 0;
+  top: 60px;
   bottom: 0;
   left: 0;
   z-index: 100;
   display: block;
-  width: 260px;
   overflow: hidden;
-  background-color: rgba(255, 255, 255, 0.96);
+  background-color: rgba(221, 220, 220, 0.96);
   border-right: 1px solid rgba(0, 0, 0, 0.1);
 }
 .toast-title {
@@ -256,7 +254,7 @@ img {
 .button {
   display: inline-block;
   flex-shrink: 0;
-  padding: 4px 10px;
+  padding: 3px 5px;
   border-radius: 4px;
   font-size: 12px;
   font-weight: bold;
@@ -381,6 +379,10 @@ th {
   outline: 0;
   -webkit-tap-highlight-color: transparent;
 }
+.decorated-lable {
+  text-align: end;
+  width: 20%;
+}
 .addIcon {
   padding-left: 4rem;
 }
@@ -392,4 +394,27 @@ th {
   top: 7px;
   left: 10px;
   z-index: 1;
+}
+
+.mod-account-edit {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: 999;
+}
+.mod-account-modal {
+  width: 540px;
+  position: fixed;
+  background-color: rgba(128, 128, 128, 0);
+  z-index: 99999;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.mod-account-edit-header {
+  background-color: rgba(253, 160, 38, 0.96);
+}
+.mod-account-edit-body {
+  background-color: rgba(253, 253, 253, 0.96);
 }

@@ -1,0 +1,167 @@
+<modal title="title">
+  <form name="form" novalidate>
+    <div class="py-3 px-5">
+      <div class="mod-login-logo text-center">
+        <img
+          ng-if="coffee.image"
+          src="{{coffee.image}}"
+          width="75%"
+          height="75%"
+          alt="logo"
+        />
+      </div>
+      <div class="mb-3 d-flex mt-3 align-items-center gap-12">
+        <label for="name" class="m-0 p-0 decorated-lable">Name</label>
+        <div class="w-100">
+          <input
+            type="text"
+            required=""
+            class="form-control"
+            ng-model="coffee.name"
+            id="name"
+            name="uName"
+            placeholder="Tên sản phẩm"
+          />
+          <div ng-show="form.$submitted || form.uName.$touched">
+            <div class="error" ng-show="form.uName.$error.required">
+              Nhập tên sản phẩm
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3 d-flex mt-3 align-items-center gap-12">
+        <label for="name" class="m-0 p-0 decorated-lable">Category</label>
+        <div class="w-100">
+          <select ng-model="coffee.category" class="forminput" required>
+            <option
+              ng-repeat="operator in category"
+              title="{{operator}}"
+              value="{{operator}}"
+            >
+              {{operator}}
+            </option>
+          </select>
+
+          <div ng-show="form.$submitted || form.uCategory.$touched">
+            <div class="error" ng-show="form.uCategory.$error.required">
+              Chọn lại sản phẩn
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3 d-flex mt-3 align-items-center gap-12">
+        <label for="name" class="m-0 p-0 decorated-lable">Attributes</label>
+        <div class="w-100">
+          <div
+            class="d-flex gap-12 my-3"
+            ng-repeat="item in attribute track by $index"
+          >
+            <div class="w-100">
+              <select
+                name="uSize{{$index}}"
+                ng-model="coffee.attribute[$index].size"
+                class="forminput"
+                required
+              >
+                <option value="">Kích thước</option>
+                <option ng-repeat="item in size " value="{{item}}">
+                  {{ item }}
+                </option>
+              </select>
+              <div ng-show="form.$submitted || form.uSize{{$index}}.$touched">
+                <div
+                  class="error"
+                  ng-show="form.uSize{{$index}}.$error.required"
+                >
+                  Chọn kích thích sản phẩm
+                </div>
+              </div>
+            </div>
+            <div class="w-100">
+              <input
+                type="text"
+                required=""
+                class="form-control"
+                ng-model="coffee.attribute[$index].price"
+                name="uPrice{{$index}}"
+                placeholder="0"
+              />
+              <div ng-show="form.$submitted || form.uPrice{{$index}}.$touched">
+                <div
+                  class="error"
+                  ng-show="form.uPrice{{$index}}.$error.required"
+                >
+                  Nhập giá thành
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="mb-3 d-flex mt-3 align-items-center justify-content-end gap-12"
+      >
+        <button class="bg-second button" ng-click="addAttribute()">
+          <span
+            class="iconify"
+            data-icon="fluent:add-circle-16-filled"
+            style="color: white"
+            data-width="25"
+            data-height="25"
+          ></span
+          >Add
+        </button>
+      </div>
+
+      <div class="mb-3 d-flex mt-3 align-items-center gap-12">
+        <label class="form-label m-0 p-0">Description</label>
+        <div class="w-100">
+          <input
+            type="text"
+            required=""
+            class="form-control"
+            ng-model="coffee.description"
+            name="uDes"
+            placeholder="Mô tả"
+          />
+          <div ng-show="form.$submitted || form.uDes.$touched">
+            <div class="error" ng-show="form.uDes.$error.required">
+              Nhập mô tả
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3 d-flex mt-3 align-items-center gap-12">
+        <label class="form-label m-0 p-0 decorated-lable">Image</label>
+        <div class="w-100">
+          <input
+            type="text"
+            required=""
+            class="form-control"
+            ng-model="coffee.image"
+            name="uImage"
+            placeholder="ảnh"
+          />
+          <div ng-show="form.$submitted || form.uImage.$touched">
+            <div class="error" ng-show="form.uImage.$error.required">
+              Nhập ảnh cho sản phẩm
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex py-3 px-5 bd-top pt-3 justify-content-end gap-12">
+      <button class="bg-remove button" ng-click="close('no')">Cancel</button>
+      <button
+        class="bg-second button"
+        ng-click="form.$valid && !form.$pristine ? close(coffee):''"
+      >
+        Ok
+      </button>
+    </div>
+  </form>
+</modal>

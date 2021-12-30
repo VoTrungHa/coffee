@@ -4,69 +4,62 @@
     "name": "Xá xị",
     "avatar": "http://localhost:3000/public/images/user-avatar.png",
     "category": "Giải khát",
-    "price": "10000",
-    "status": true,
-    "idAccount": "ADMIN",
-    "count": 5
+    "size": "M",
+    "price": 12000,
+    "descript": ""
   },
   {
     "id": "9H1efeRb",
     "name": "Cà phê",
     "avatar": "http://localhost:3000/public/images/user-avatar.png",
     "category": "Cà phê",
-    "price": "12000",
-    "status": true,
-    "idAccount": "ADMIN",
-    "count": 4
+    "size": "M",
+    "price": 12000,
+    "descript": ""
   },
   {
     "id": "9H1etkR3",
     "name": "Tăng lực",
     "avatar": "http://localhost:3000/public/images/user-avatar.png",
     "category": "Giải khát",
-    "price": "15000",
-    "status": true,
-    "idAccount": "ADMIN",
-    "count": 8
+    "size": "M",
+    "price": 12000,
+    "descript": ""
   },
   {
     "id": "9H1et12Rb",
     "name": "Dưa hấu",
     "avatar": "http://localhost:3000/public/images/user-avatar.png",
     "category": "Trái cây",
-    "price": "20000",
-    "status": true,
-    "idAccount": "ADMIN",
-    "count": 5
+    "size": "M",
+    "price": 12000,
+    "descript": ""
   },
   {
     "id": "9H154kRb",
     "name": "Bí đao",
     "avatar": "http://localhost:3000/public/images/user-avatar.png",
     "category": "Giải khát",
-    "price": "120000",
-    "status": true,
-    "idAccount": "ADMIN",
-    "count": 12
+    "size": "M",
+    "price": 12000,
+    "descript": ""
   },
   {
     "id": "9H1efkRb",
     "name": "Siro",
     "avatar": "http://localhost:3000/public/images/user-avatar.png",
     "category": "Giải khát",
-    "price": "14000",
-    "status": true,
-    "idAccount": "ADMIN",
-    "count": 23
+    "size": "M",
+    "price": 12000,
+    "descript": ""
   },
   {
     "id": "9H1etkRe",
     "name": "Cà rốt",
     "avatar": "http://localhost:3000/public/images/user-avatar.png",
     "category": "Trái cây",
-    "price": "20000",
-    "status": true,
-    "idAccount": "ADMIN",
-    "count": 32
+    "size": "L",
+    "price": 12000,
+    "descript": ""
   }
 ]

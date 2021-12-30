@@ -9,6 +9,7 @@
         templateUrl: "app/Components/Card/card.template.html",
         restrict: "E",
         transclude: true,
+        replace: true,
         scope: {
           rounded: "=",
           padding: "=",

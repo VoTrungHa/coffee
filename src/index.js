@@ -1,31 +1,36 @@
 (function () {
   "use strict";
 
-  angular.module("index", [
-    "ngRoute",
-    "ngCookies",
-    "core",
-    "account",
-    "layout",
-    "avatar",
-    "typo",
-    "card",
-    "cardHeader",
-    "cardBody",
-    "iconTurnOff",
-    "ui.bootstrap",
-    "formControl",
-    "formInputSearch",
-    "angularModalService",
-    "ngSanitize",
-    "ngAnimate",
-    "toastr",
-    "cardFooter",
-    "account.detail",
-    "account.created",
-    "account.edit",
-    "login",
-    "register",
-    "coffee",
-  ]);
+  angular
+    .module("index", [
+      "ngRoute",
+      "ngCookies",
+      "core",
+      "account",
+      "layout",
+      "avatar",
+      "card",
+      "cardHeader",
+      "cardBody",
+      "ui.bootstrap",
+      "formControl",
+      "formInputSearch",
+      "angularModalService",
+      "ngSanitize",
+      "ngAnimate",
+      "toastr",
+      "cardFooter",
+      "login",
+      "register",
+      "coffee",
+      "tableheader",
+      "tablebody",
+      "pagination",
+      "modal",
+    ])
+    .controller("indexcontroller", indexcontroller);
+  indexcontroller.$inject = ["$scope", "Account", "ModalService", "toastr"];
+  function indexcontroller($scope, Account) {
+    Account.getListAccount();
+  }
 })();
