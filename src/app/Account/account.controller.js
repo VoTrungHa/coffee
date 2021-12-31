@@ -29,7 +29,7 @@
   function accountcontroller($scope, Account, ModalService, toastr) {
     $scope.initData = [];
     $scope.orderBy = "name";
-    $scope.propertyName = "name";
+    $scope.propertyName = "name"; // attribute use for the search
     $scope.reverse = true;
     $scope.items = [
       { name: "Tất cả", value: "" },
@@ -84,7 +84,7 @@
         });
       });
     };
-
+    // setting function open modal
     function openModal(data, title) {
       return ModalService.showModal({
         templateUrl: "app/Account/modalAccount.template.html",

@@ -69,6 +69,13 @@
       $scope.totalItems = $scope.initData.length;
       var begin = (page - 1) * $scope.numPerPage,
         end = begin + $scope.numPerPage;
+      $scope.initData.map((item, index) => {
+        var size = "";
+        item.attributes.map((att, index) => {
+          size += att.size + " ";
+        });
+        item.size = size;
+      });
       $scope.initData = $scope.initData.slice(begin, end);
     }
     getContent($scope.currentPage);

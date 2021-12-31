@@ -15,12 +15,12 @@
             });
           }
         },
+
         createdAccount: function (account) {
           var data = JSON.parse(localStorage.getItem("Accounts")) || [];
           var result = data.filter(
             (item, index) => item.email === account.email
           );
-
           if (result.length <= 0) {
             var newAcc = {
               id: publicService.Makeid(8),
@@ -38,9 +38,9 @@
             return { status: false, message: "Email đã tồn tại!" };
           }
         },
+
         editAccount: function (account, id) {
           var data = JSON.parse(localStorage.getItem("Accounts"));
-
           data.map((item, index) => {
             if (item.id === id) {
               item.email = account.email;
@@ -53,11 +53,13 @@
           localStorage.setItem("Accounts", JSON.stringify(data));
           return true;
         },
+
         deleteAccountById: function (id) {
           var data = JSON.parse(localStorage.getItem("Accounts"));
           var result = data.filter((item, index) => item.id !== id);
           localStorage.setItem("Accounts", JSON.stringify(result));
         },
+
         getAccountById: function (id) {
           var data = JSON.parse(localStorage.getItem("Accounts"));
           var result = data.filter((item, index) => item.id === id);

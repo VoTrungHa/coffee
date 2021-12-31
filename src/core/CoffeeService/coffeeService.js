@@ -17,34 +17,34 @@
         });
       }
     };
-    (service.deleteProductById = function (id) {
-      var data = JSON.parse(localStorage.getItem("Coffees"));
-      var result = data.filter((item, index) => item.id !== id);
-      localStorage.setItem("Coffees", JSON.stringify(result));
-    }),
-      (service.createdCoffee = function (coffee) {
-        var data = JSON.parse(localStorage.getItem("Coffees")) || [];
-        var result = data.filter((item, index) => item.name === coffee.name);
+    service.deleteProductById = function (id) {
+      var data = JSON.parse(localStorage.getItem("Coffees")); // get data form localstorage
+      var result = data.filter((item, index) => item.id !== id); // remove item have id from form
+      localStorage.setItem("Coffees", JSON.stringify(result)); // save data to localstorage
+    };
+    service.createdCoffee = function (coffee) {
+      var data = JSON.parse(localStorage.getItem("Coffees")) || []; // get data form localstorage
+      var result = data.filter((item, index) => item.name === coffee.name); // check array have item  name same with name from form
 
-        if (result.length <= 0) {
-          var newCoffee = {
-            id: publicService.Makeid(8),
-            name: coffee.name,
-            image: coffee.image,
-            size: coffee.size,
-            category: coffee.category,
-            image: coffee.image,
-            price: coffee.price,
-            descript: coffee.descript,
-            attributes: coffee.attributes,
-          };
-          data.push(newCoffee);
-          localStorage.setItem("Coffees", JSON.stringify(data));
-          return { status: true, message: "Thêm sản phẩm thành công !" };
-        } else {
-          return { status: false, message: "Tên sản phẩm đã tồn tại!" };
-        }
-      });
+      if (result.length <= 0) {
+        var newCoffee = {
+          id: publicService.Makeid(8),
+          name: coffee.name,
+          image: coffee.image,
+          size: coffee.size,
+          category: coffee.category,
+          image: coffee.image,
+          price: coffee.price,
+          descript: coffee.descript,
+          attributes: coffee.attributes,
+        };
+        data.push(newCoffee); // add to array, and then save
+        localStorage.setItem("Coffees", JSON.stringify(data));
+        return { status: true, message: "Thêm sản phẩm thành công !" };
+      } else {
+        return { status: false, message: "Tên sản phẩm đã tồn tại!" };
+      }
+    };
 
     service.editCoffee = function (coffee, id) {
       var data = JSON.parse(localStorage.getItem("Coffees"));

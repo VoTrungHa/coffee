@@ -221,18 +221,13 @@ img {
   object-fit: cover;
 }
 
-.gap-4 {
-  gap: 4px;
-}
 .gap-8 {
   gap: 8px;
 }
 .gap-12 {
   gap: 12px;
 }
-.p-12 {
-  padding: 12px;
-}
+
 .p-16 {
   padding: 16px;
 }
@@ -305,21 +300,7 @@ img {
 .bd-top {
   border-top: 1px solid rgba(0, 0, 0, 0.125);
 }
-.mod-card-header {
-  width: 100%;
-  padding: 14px;
-  box-sizing: border-box;
-}
-.mod-card-body {
-  box-sizing: border-box;
-  padding: 14px;
-}
-.mod-card-footer {
-  width: 100%;
-  border-top: 1px solid rgba(0, 0, 0, 0.125);
-  padding: 14px;
-  box-sizing: border-box;
-}
+
 .cursor {
   cursor: pointer;
   transition: all 0.4s;

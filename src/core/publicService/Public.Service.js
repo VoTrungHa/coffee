@@ -6,6 +6,7 @@
     .factory("publicService", function () {
       return {
         Makeid: function (length) {
+          // create UUID
           var result = "";
           var characters =
             "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
