@@ -35,7 +35,7 @@
             category: coffee.category,
             image: coffee.image,
             price: coffee.price,
-            description: coffee.description,
+            descript: coffee.descript,
             attributes: coffee.attributes,
           };
           data.push(newCoffee);
@@ -53,9 +53,10 @@
           item.name = coffee.name;
           item.size = coffee.size;
           item.category = coffee.category;
-          item.description = coffee.description;
+          item.descript = coffee.descript;
           item.price = coffee.price;
           item.image = coffee.image;
+          item.attributes = coffee.attributes;
         }
       });
       localStorage.setItem("Coffees", JSON.stringify(data));

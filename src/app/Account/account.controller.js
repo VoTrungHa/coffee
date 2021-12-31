@@ -28,7 +28,7 @@
   accountcontroller.$inject = ["$scope", "Account", "ModalService", "toastr"];
   function accountcontroller($scope, Account, ModalService, toastr) {
     $scope.initData = [];
-    $scope.orderBy = "email";
+    $scope.orderBy = "name";
     $scope.propertyName = "name";
     $scope.reverse = true;
     $scope.items = [

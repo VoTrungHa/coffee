@@ -18,16 +18,32 @@
 
   ModalCoffeeController.$inject = ["$scope", "close", "coffee", "title"];
   function ModalCoffeeController($scope, close, coffee, title) {
-    $scope.coffee = coffee;
+    $scope.data = {
+      name: "",
+      attributes: [{ size: "", price: "" }],
+      image: "",
+      category: "",
+      descript: "",
+    };
+    if (coffee) {
+      $scope.data = coffee;
+    }
     $scope.title = title;
     $scope.size = ["M", "L", "XL"];
-    $scope.category = ["Cafe", "Giải khát", "Nước suối", "sinh tố"];
+    $scope.category = ["Cà phê", "Giải khát", "Nước suối", "Sinh tố"];
     $scope.attribute = [{ size: "", price: "" }];
     $scope.addAttribute = function () {
-      $scope.attribute.push({ size: "", price: "" });
+      $scope.data.attributes.push({ size: "", price: "" });
     };
-    $scope.close = function (result) {
-      close(result);
+    $scope.deleteAtribute = function (index) {
+      $scope.data.attributes.splice(index, 1);
+    };
+    $scope.close = function (params) {
+      if (params === "no") {
+        close(false);
+      } else {
+        close($scope.data);
+      }
     };
   }
   coffeeController.$inject = ["$scope", "Coffee", "ModalService", "toastr"];
@@ -87,7 +103,8 @@
       var modal = openModal(result, $scope.title);
       modal.then(function (modal) {
         modal.close.then(function (result) {
-          if (result !== "no") {
+          console.log(result);
+          if (result) {
             var resp = Coffee.editCoffee(result, id);
             if (resp) {
               toastr.success("Thành công !", "Cập nhật sản phẩm ", {
@@ -102,10 +119,10 @@
 
     $scope.handleCreated = function () {
       $scope.title = "Created coffee";
-      var modal = openModal({}, $scope.title, $scope.SIZE);
+      var modal = openModal(null, $scope.title, $scope.SIZE);
       modal.then(function (modal) {
         modal.close.then(function (result) {
-          if (result !== "no") {
+          if (result) {
             var resp = Coffee.createdCoffee(result);
             if (resp.status) {
               toastr.success("Thành công !", "Thêm người dùng", {

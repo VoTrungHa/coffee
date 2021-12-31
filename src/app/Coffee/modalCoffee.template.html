@@ -3,10 +3,10 @@
     <div class="py-3 px-5">
       <div class="mod-login-logo text-center">
         <img
-          ng-if="coffee.image"
-          src="{{coffee.image}}"
-          width="75%"
-          height="75%"
+          ng-if="data.image"
+          src="{{data.image}}"
+          width="50%"
+          height="50%"
           alt="logo"
         />
       </div>
@@ -17,7 +17,7 @@
             type="text"
             required=""
             class="form-control"
-            ng-model="coffee.name"
+            ng-model="data.name"
             id="name"
             name="uName"
             placeholder="Tên sản phẩm"
@@ -33,7 +33,8 @@
       <div class="mb-3 d-flex mt-3 align-items-center gap-12">
         <label for="name" class="m-0 p-0 decorated-lable">Category</label>
         <div class="w-100">
-          <select ng-model="coffee.category" class="forminput" required>
+          <select ng-model="data.category" class="forminput" required>
+            <option value="">Chọn loại sản phẩm</option>
             <option
               ng-repeat="operator in category"
               title="{{operator}}"
@@ -56,12 +57,12 @@
         <div class="w-100">
           <div
             class="d-flex gap-12 my-3"
-            ng-repeat="item in attribute track by $index"
+            ng-repeat="item in data.attributes track by $index"
           >
             <div class="w-100">
               <select
                 name="uSize{{$index}}"
-                ng-model="coffee.attribute[$index].size"
+                ng-model="item.size"
                 class="forminput"
                 required
               >
@@ -84,7 +85,7 @@
                 type="text"
                 required=""
                 class="form-control"
-                ng-model="coffee.attribute[$index].price"
+                ng-model="item.price"
                 name="uPrice{{$index}}"
                 placeholder="0"
               />
@@ -96,6 +97,21 @@
                   Nhập giá thành
                 </div>
               </div>
+            </div>
+            <div class="btn-remove">
+              <button
+                ng-if="data.attributes.length>1"
+                class="button bg-remove"
+                ng-click="deleteAtribute($index)"
+              >
+                <span
+                  class="iconify"
+                  data-icon="bpmn:trash"
+                  style="color: white"
+                  data-width="18"
+                  data-height="18"
+                ></span>
+              </button>
             </div>
           </div>
         </div>
@@ -119,14 +135,16 @@
       <div class="mb-3 d-flex mt-3 align-items-center gap-12">
         <label class="form-label m-0 p-0">Description</label>
         <div class="w-100">
-          <input
-            type="text"
+          <textarea
+            rows="2"
             required=""
             class="form-control"
-            ng-model="coffee.description"
+            ng-model="data.descript"
             name="uDes"
             placeholder="Mô tả"
-          />
+            ng-model="string"
+          >
+          </textarea>
           <div ng-show="form.$submitted || form.uDes.$touched">
             <div class="error" ng-show="form.uDes.$error.required">
               Nhập mô tả
@@ -142,7 +160,7 @@
             type="text"
             required=""
             class="form-control"
-            ng-model="coffee.image"
+            ng-model="data.image"
             name="uImage"
             placeholder="ảnh"
           />
@@ -156,10 +174,7 @@
     </div>
     <div class="d-flex py-3 px-5 bd-top pt-3 justify-content-end gap-12">
       <button class="bg-remove button" ng-click="close('no')">Cancel</button>
-      <button
-        class="bg-second button"
-        ng-click="form.$valid && !form.$pristine ? close(coffee):''"
-      >
+      <button class="bg-second button" ng-click="form.$valid  ? close():''">
         Ok
       </button>
     </div>

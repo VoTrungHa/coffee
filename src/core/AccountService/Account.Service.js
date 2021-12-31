@@ -55,7 +55,6 @@
         },
         deleteAccountById: function (id) {
           var data = JSON.parse(localStorage.getItem("Accounts"));
-
           var result = data.filter((item, index) => item.id !== id);
           localStorage.setItem("Accounts", JSON.stringify(result));
         },
