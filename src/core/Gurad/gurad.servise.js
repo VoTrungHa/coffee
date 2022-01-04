@@ -10,7 +10,7 @@
   function AuthenticationService($rootScope, publicService) {
     var service = {};
     service.Login = function (data, callback) {
-      var account = JSON.parse(localStorage.getItem("Accounts"));
+      var account = JSON.parse(localStorage.getItem("Accounts")) || [];
       var response = { message: "", status: undefined, id: "" };
 
       var result = account.filter(

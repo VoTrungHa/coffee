@@ -25,36 +25,48 @@
     };
   }
 
-  accountcontroller.$inject = ["$scope", "Account", "ModalService", "toastr"];
-  function accountcontroller($scope, Account, ModalService, toastr) {
+  accountcontroller.$inject = [
+    "$scope",
+    "Account",
+    "publicService",
+    "ModalService",
+    "toastr",
+  ];
+  function accountcontroller(
+    $scope,
+    Account,
+    publicService,
+    ModalService,
+    toastr
+  ) {
     $scope.initData = [];
-    $scope.orderBy = "name";
-    $scope.propertyName = "name"; // attribute use for the search
+    $scope.orderBy = "email";
+    $scope.propertyName = "email"; // attribute use for the search
     $scope.reverse = true;
     $scope.items = [
       { name: "Tất cả", value: "" },
       { name: "Quản trị", value: "ADMIN" },
       { name: "Nhân viên", value: "USER" },
     ];
+    $scope.query = "";
     $scope.CONTENTS_LIST_WIDTH = [
       { name: "Name", width: "140px", key: "nickName" },
       { name: "Gender", width: "140px", key: "gender" },
       { name: "Role", width: "140px", key: "role" },
       { name: "Phone", width: "120px", key: "phone" },
       { name: "Email", width: "120px", key: "email" },
-      { name: "Action", width: "160px" },
     ];
     $scope.currentPage = 1;
     $scope.numPerPage = 5;
     $scope.title = "Update Account";
 
     function getContent(page) {
-      Account.getListAccount();
       $scope.initData = JSON.parse(localStorage.getItem("Accounts"));
       $scope.totalItems = $scope.initData.length;
-      var begin = (page - 1) * $scope.numPerPage,
-        end = begin + $scope.numPerPage;
-      $scope.initData = $scope.initData.slice(begin, end);
+      $scope.initData = $scope.initData.slice(
+        publicService.CalutePaging(page, $scope.numPerPage).begin,
+        publicService.CalutePaging(page, $scope.numPerPage).end
+      );
     }
     getContent($scope.currentPage); // get list account .
 
@@ -62,13 +74,8 @@
       getContent(page);
     };
 
-    $scope.sortBy = function (propertyName) {
-      $scope.reverse =
-        $scope.propertyName === propertyName ? !$scope.reverse : false;
-      $scope.propertyName = propertyName;
-    };
-
     $scope.handlDeleteAccountById = function (id) {
+      console.log(id);
       ModalService.showModal({
         templateUrl: "app/Components/Notifycation/notifycation.template.html",
         controller: "ModalController",
@@ -83,6 +90,23 @@
           }
         });
       });
+    };
+
+    $scope.search = function (value) {
+      var data = JSON.parse(localStorage.getItem("Accounts"));
+      const result = data.filter((item, index) => {
+        return (
+          item.email.toLowerCase().indexOf(value.toLowerCase()) !== -1 ||
+          item.nickName.toLowerCase().indexOf(value.toLowerCase()) !== -1 ||
+          item.gender.toLowerCase().indexOf(value.toLowerCase()) !== -1 ||
+          item.phone.toLowerCase().indexOf(value.toLowerCase()) !== -1 ||
+          item.role.toLowerCase().indexOf(value.toLowerCase()) !== -1
+        );
+      });
+      $scope.initData = result.slice(
+        publicService.CalutePaging($scope.currentPage, $scope.numPerPage).begin,
+        publicService.CalutePaging($scope.currentPage, $scope.numPerPage).end
+      );
     };
     // setting function open modal
     function openModal(data, title) {
@@ -138,7 +162,7 @@
     };
 
     $scope.hanldRest = function () {
-      $scope.initcondition = {};
+      $scope.query = "";
       getContent($scope.currentPage);
     };
   }

@@ -11,11 +11,13 @@
     $scope.account = { email: "", password: "" };
     $scope.register = function (account) {
       var result = Account.createdAccount(account);
-      if (result.status) {
-        toastr.success(result.message, "Tạo tài khoản");
-      } else {
-        toastr.error(result.message, "Tạo tài khoản");
-      }
+      result.then((res) => {
+        if (res.status) {
+          toastr.success(res.message, "Tạo tài khoản");
+        } else {
+          toastr.error(res.message, "Tạo tài khoản");
+        }
+      });
     };
   }
 })();

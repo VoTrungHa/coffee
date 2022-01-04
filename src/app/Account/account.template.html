@@ -2,13 +2,15 @@
   <div class="d-flex justify-content-between align-items-center">
     <h1 class="headline size-0">ACCOUNT MANAGEMENT</h1>
     <div class="d-flex gap-12">
-      <mod-form-search
-        class="w-100"
-        formsearch="'true'"
-        type="'text'"
-        placeholder="'Tên người dùng'"
-        value="initcondition.nickName"
-      ></mod-form-search>
+      <form ng-submit="search(query)">
+        <mod-form-search
+          class="w-100"
+          formsearch="'true'"
+          type="'text'"
+          placeholder="'Search...'"
+          value="query"
+        ></mod-form-search>
+      </form>
       <button class="button bg-second" ng-click="handleCreated()">Add</button>
       <button class="button bg-remove" ng-click="hanldRest()">
         <span
@@ -22,29 +24,13 @@
   </div>
   <div class="mt-5">
     <mod-card padding="'12'">
-      <table class="mod-table">
-        <thead class="mod-table-header">
-          <tr>
-            <th
-              ng-repeat="item in CONTENTS_LIST_WIDTH track by $index"
-              ng-style="{'width':item.width,'min-width': item.width}"
-              class="mod-table-col"
-              headertable
-              data="item"
-              sort="sortBy"
-            ></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr
-            ng-repeat="item in initData | filter:initcondition |orderBy:propertyName:reverse track by $index "
-            bodytable
-            data="item"
-            update="handlUpdateAccount"
-            delete="handlDeleteAccountById"
-          ></tr>
-        </tbody>
-      </table>
+      <mod-table-app
+        tabheader="CONTENTS_LIST_WIDTH"
+        data="initData"
+        update="handlUpdateAccount"
+        delete="handlDeleteAccountById"
+      >
+      </mod-table-app>
     </mod-card>
     <pagiton
       length="initData.length"

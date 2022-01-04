@@ -46,38 +46,56 @@
       }
     };
   }
-  coffeeController.$inject = ["$scope", "Coffee", "ModalService", "toastr"];
-  function coffeeController($scope, Coffee, ModalService, toastr) {
+  coffeeController.$inject = [
+    "$scope",
+    "Coffee",
+    "ModalService",
+    "toastr",
+    "publicService",
+  ];
+  function coffeeController(
+    $scope,
+    Coffee,
+    ModalService,
+    toastr,
+    publicService
+  ) {
     $scope.CONTENTS_LIST_WIDTH = [
       { name: "Name", width: "140px", key: "name" },
-      { name: "Image", width: "140px" },
-      { name: "Category", width: "120px" },
-      { name: "Size", width: "120px" },
-      { name: "Action", width: "160px" },
+      { name: "Image", width: "140px", key: "image" },
+      { name: "Category", width: "120px", key: "category" },
+      { name: "Size", width: "120px", key: "size" },
+      // { name: "Action", width: "160px" },
     ];
 
     $scope.currentPage = 1;
     $scope.numPerPage = 5;
-
+    $scope.initData = [];
     $scope.initcondition = {
       name: "",
     };
 
     function getContent(page) {
-      Coffee.getListCoffee();
-      $scope.initData = JSON.parse(localStorage.getItem("Coffees"));
-      $scope.totalItems = $scope.initData.length;
-      var begin = (page - 1) * $scope.numPerPage,
-        end = begin + $scope.numPerPage;
-      $scope.initData.map((item, index) => {
-        var size = "";
-        item.attributes.map((att, index) => {
-          size += att.size + " ";
+      Coffee.getListCoffee().then(function (result) {
+        $scope.initData = JSON.parse(localStorage.getItem("Coffees"));
+        $scope.totalItems = $scope.initData.length;
+
+        $scope.initData.map((item, index) => {
+          var size = "";
+          item.attributes.map((att, index) => {
+            size += att.size + " ";
+          });
+          item.size = size;
         });
-        item.size = size;
+
+        $scope.initData = $scope.initData.slice(
+          // get date for paging
+          publicService.CalutePaging(page, $scope.numPerPage).begin,
+          publicService.CalutePaging(page, $scope.numPerPage).end
+        );
       });
-      $scope.initData = $scope.initData.slice(begin, end);
     }
+    console.log($scope.initData);
     getContent($scope.currentPage);
     $scope.pageChanged = function (page) {
       getContent(page);
@@ -149,7 +167,33 @@
         });
       });
     };
-
+    $scope.search = function (value) {
+      var data = JSON.parse(localStorage.getItem("Coffees")); // get date to localstorage
+      const result = data.filter((item, index) => {
+        var size = "";
+        item.attributes.map((att, index) => {
+          // so attribute is array object price and size, so use map to get size to string
+          size += att.size + " ";
+        });
+        return (
+          item.name.toLowerCase().indexOf(value.toLowerCase()) !== -1 ||
+          item.category.toLowerCase().indexOf(value.toLowerCase()) !== -1 ||
+          size.toLowerCase().indexOf(value.toLowerCase()) !== -1
+        );
+      });
+      $scope.initData = result.slice(
+        // get date for paging
+        publicService.CalutePaging($scope.currentPage, $scope.numPerPage).begin,
+        publicService.CalutePaging($scope.currentPage, $scope.numPerPage).end
+      );
+      $scope.initData.map((item, index) => {
+        var size = "";
+        item.attributes.map((att, index) => {
+          size += att.size + " ";
+        });
+        item.size = size;
+      });
+    };
     $scope.handlDeleteProductById = function (id) {
       ModalService.showModal({
         templateUrl: "app/Components/Notifycation/notifycation.template.html",

@@ -8,14 +8,13 @@
   function coffeeService($http, publicService) {
     var service = {};
     service.getListCoffee = function () {
-      if (!localStorage.getItem("Coffees")) {
-        return $http({
-          method: "GET",
-          url: "http://localhost:3000/db/coffee.json",
-        }).then(function (response) {
+      return $http({
+        method: "GET",
+        url: "http://localhost:3000/db/coffee.json",
+      }).then(function (response) {
+        if (!localStorage.getItem("Coffees"))
           localStorage.setItem("Coffees", JSON.stringify(response.data));
-        });
-      }
+      });
     };
     service.deleteProductById = function (id) {
       var data = JSON.parse(localStorage.getItem("Coffees")); // get data form localstorage

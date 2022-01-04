@@ -18,6 +18,11 @@
           }
           return result;
         },
+        CalutePaging: function (page, numPerPage) {
+          var begin = (page - 1) * numPerPage,
+            end = begin + numPerPage;
+          return { begin, end };
+        },
       };
     });
 })();

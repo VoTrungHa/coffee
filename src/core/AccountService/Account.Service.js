@@ -16,7 +16,8 @@
           }
         },
 
-        createdAccount: function (account) {
+        createdAccount: async function (account) {
+          await this.getListAccount();
           var data = JSON.parse(localStorage.getItem("Accounts")) || [];
           var result = data.filter(
             (item, index) => item.email === account.email
@@ -26,6 +27,7 @@
               id: publicService.Makeid(8),
               email: account.email,
               password: account.password,
+              avatar: "http://localhost:3000/public/images/user-avatar.png",
               role: "USER",
               phone: account.phone || "",
               nickName: account.nickName || "",

@@ -4,7 +4,7 @@
     "email": "abc@gmail.com",
     "avatar": "http://localhost:3000/public/images/user-avatar.png",
     "nickName": "Hoàn Bính",
-    "gender": "1",
+    "gender": "Nam",
     "password": "123",
     "phone": "036151212",
     "role": "USER"
@@ -14,7 +14,7 @@
     "email": "kimcuc@gmail.com",
     "avatar": "http://localhost:3000/public/images/user-avatar.png",
     "nickName": "Kim cúc",
-    "gender": "0",
+    "gender": "Nữ",
     "phone": "036151212",
     "role": "USER"
   },
@@ -23,7 +23,7 @@
     "email": "trongnghia@gmail.com",
     "avatar": "http://localhost:3000/public/images/user-avatar.png",
     "nickName": "Trọng Nghĩa",
-    "gender": "1",
+    "gender": "Nam",
     "phone": "036151212",
     "role": "USER"
   },
@@ -32,7 +32,7 @@
     "email": "luly@gmail.com",
     "avatar": "http://localhost:3000/public/images/user-avatar.png",
     "nickName": "Lu Ly",
-    "gender": "0",
+    "gender": "Nữ",
     "phone": "036151212",
     "role": "USER"
   },
@@ -41,7 +41,7 @@
     "email": "huynhload@gmail.com",
     "avatar": "http://localhost:3000/public/images/user-avatar.png",
     "nickName": "Huỳnh Loan",
-    "gender": "0",
+    "gender": "Nữ",
     "phone": "036151212",
     "role": "USER"
   },
@@ -50,7 +50,7 @@
     "email": "Kimtrong@gmail.com",
     "avatar": "http://localhost:3000/public/images/user-avatar.png",
     "nickName": "Kim Trọng",
-    "gender": "1",
+    "gender": "Nam",
     "phone": "036151212",
     "role": "USER"
   },
@@ -59,7 +59,7 @@
     "email": "Thuthuy@gmail.com",
     "avatar": "http://localhost:3000/public/images/user-avatar.png",
     "nickName": "Thu Thủy",
-    "gender": "0",
+    "gender": "Nữ",
     "phone": "036151212",
     "role": "ADMIN"
   },
@@ -68,7 +68,7 @@
     "email": "Trannhat@gmail.com",
     "avatar": "http://localhost:3000/public/images/user-avatar.png",
     "nickName": "Trần nhật",
-    "gender": "1",
+    "gender": "Nam",
     "phone": "036151212",
     "role": "USER"
   },
@@ -77,7 +77,7 @@
     "email": "kimthoa@gmail.com",
     "avatar": "http://localhost:3000/public/images/user-avatar.png",
     "nickName": "kim Thoa",
-    "gender": "0",
+    "gender": "Nữ",
     "phone": "036151212",
     "role": "ADMIN"
   }

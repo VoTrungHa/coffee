@@ -34,7 +34,7 @@ angular
         .when("/coffees", {
           template: "<coffee-component></coffee-component>",
         })
-        .otherwise("/coffees");
+        .otherwise("/accounts");
     },
   ])
   .run([
