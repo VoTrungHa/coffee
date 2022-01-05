@@ -8,7 +8,6 @@
     "account",
     "layout",
     "avatar",
-    "card",
     "ui.bootstrap",
     "formControl",
     "formInputSearch",
@@ -19,7 +18,6 @@
     "login",
     "register",
     "coffee",
-    "pagination",
     "modal",
     "tableapp",
   ]);

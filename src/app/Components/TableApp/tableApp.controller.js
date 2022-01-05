@@ -7,6 +7,9 @@
     .directive("modTableApp", function () {
       return {
         link: function ($scope) {
+          $scope.onChangePage = function (currentpage) {
+            $scope.pagechanged()(currentpage);
+          };
           $scope.sortBy = function (propertyName) {
             $scope.reverse =
               $scope.propertyName === propertyName ? !$scope.reverse : false;
@@ -42,6 +45,11 @@
           delete: "&",
           propertyname: "=",
           sort: "&",
+          length: "=",
+          totalitems: "=",
+          currentpage: "=",
+          numperpage: "=",
+          pagechanged: "&",
         },
         templateUrl: "app/Components/TableApp/tableApp.template.html",
       };

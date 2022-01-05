@@ -1,65 +1,87 @@
-<table class="mod-table">
-  <thead class="mod-table-header">
-    <tr>
-      <th
-        ng-repeat="item in tabheader track by $index"
-        ng-style="{'width':item.width,'min-width': item.width}"
-        class="mod-table-col"
-      >
-        {{item.name}}
-        <span ng-if="item.key" ng-click="sortBy(item.key)">
-          <span
-            class="iconify cursor"
-            data-icon="fa-solid:sort"
-            data-width="16"
-            data-height="16"
-          ></span>
-        </span>
-      </th>
-      <th
-        class="mod-table-col"
-        ng-style="{'width':'160px','min-width': '160px'}"
-      >
-        Action
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr
-      ng-repeat="item in data 
+<div>
+  <div class="p-12 mod-card">
+    <table class="mod-table">
+      <thead class="mod-table-header">
+        <tr>
+          <th
+            ng-repeat="item in tabheader track by $index"
+            ng-style="{'width':item.width,'min-width': item.width}"
+            class="mod-table-col"
+          >
+            {{item.name}}
+            <span ng-if="item.key" ng-click="sortBy(item.key)">
+              <span
+                class="iconify cursor"
+                data-icon="fa-solid:sort"
+                data-width="16"
+                data-height="16"
+              ></span>
+            </span>
+          </th>
+          <th
+            class="mod-table-col"
+            ng-style="{'width':'160px','min-width': '160px'}"
+          >
+            Action
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          ng-repeat="item in data 
        |orderBy:propertyname:reverse 
        track by $index "
-    >
-      <td class="mod-table-col" ng-repeat="name in tabheader ">
-        <div ng-if="name.key==='image'" class="text-center avatar">
-          <img
-            ng-src="{{item[name.key]}}"
-            width="100%"
-            height="100%"
-            alt="logo"
-          />
-        </div>
-        <span ng-if="name.key !=='image'"> {{item[name.key]}} </span>
-      </td>
-      <td class="mod-table-col">
-        <button class="bg-default button" ng-click="handlUpdate(item.id)">
-          <span
-            class="iconify"
-            data-icon="akar-icons:edit"
-            data-width="20"
-            data-height="20"
-          ></span>
-        </button>
+        >
+          <td class="mod-table-col" ng-repeat="name in tabheader ">
+            <div ng-if="name.key==='image'" class="text-center avatar">
+              <img
+                ng-src="{{item[name.key]}}"
+                width="100%"
+                height="100%"
+                alt="logo"
+              />
+            </div>
+            <span ng-if="name.key !=='image'"> {{item[name.key]}} </span>
+          </td>
+          <td class="mod-table-col">
+            <button class="bg-default button" ng-click="handlUpdate(item.id)">
+              <span
+                class="iconify"
+                data-icon="akar-icons:edit"
+                data-width="20"
+                data-height="20"
+              ></span>
+            </button>
 
-        <button class="bg-remove button" ng-click="handlDelete(item.id)">
-          <span
-            class="iconify"
-            data-icon="fluent:delete-28-filled"
-            data-width="20"
-            data-height="20"
-          ></span>
-        </button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+            <button class="bg-remove button" ng-click="handlDelete(item.id)">
+              <span
+                class="iconify"
+                data-icon="fluent:delete-28-filled"
+                data-width="20"
+                data-height="20"
+              ></span>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="d-flex justify-content-between align-items-center">
+    <p class="headline size-3">Showing {{length}} items</p>
+    <ul
+      uib-pagination
+      total-items="totalitems"
+      ng-model="currentpage"
+      max-size="numperpage"
+      class="pagination-sm"
+      items-per-page="numperpage"
+      boundary-links="true"
+      ng-change="onChangePage(currentpage)"
+      force-ellipses="true"
+      previous-text="&lsaquo;"
+      next-text="&rsaquo;"
+      first-text="&laquo;"
+      last-text="&raquo;"
+    ></ul>
+  </div>
+</div>

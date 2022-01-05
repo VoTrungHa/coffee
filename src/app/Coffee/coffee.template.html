@@ -24,21 +24,17 @@
     </div>
   </div>
   <div class="mt-5">
-    <mod-card padding="'12'">
-      <mod-table-app
-        tabheader="CONTENTS_LIST_WIDTH"
-        data="initData"
-        update="handlUpdateProduct"
-        delete="handlDeleteProductById"
-      >
-      </mod-table-app>
-    </mod-card>
-    <pagiton
+    <mod-table-app
+      tabheader="CONTENTS_LIST_WIDTH"
+      data="initData"
+      update="handlUpdateProduct"
+      delete="handlDeleteProductById"
       length="initData.length"
       totalitems="totalItems"
       currentpage="currentPage"
       numperpage="numPerPage"
       pagechanged="pageChanged"
-    ></pagiton>
+    >
+    </mod-table-app>
   </div>
 </div>
