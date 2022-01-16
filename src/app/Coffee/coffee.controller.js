@@ -95,7 +95,7 @@
         );
       });
     }
-    console.log($scope.initData);
+    
     getContent($scope.currentPage);
     $scope.pageChanged = function (page) {
       getContent(page);
